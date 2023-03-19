@@ -1,0 +1,29 @@
+.wlcrm-chart-container {
+    // min-height: 500px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    min-width: 450px;
+    padding: 8px;
+    // prevent re-scroll on reload apex-charts
+    min-height: 350px;
+    // max-height: 550px;
+
+    &.wlcrm-chart-sparkline, &.wlcrm-chart-small {
+        min-height: unset;
+        min-width: unset;
+    }
+
+    @media (max-width: 550px) {
+        .apexcharts-canvas {
+            padding-top: 1.2rem;
+            // position: unset;
+        }
+
+        .apexcharts-toolbar {
+            flex-direction: row-reverse;
+            left: 4px;
+            top: 4px !important;
+        }
+    }
+}

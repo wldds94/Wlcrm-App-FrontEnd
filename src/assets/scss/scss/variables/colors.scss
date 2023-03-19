@@ -1,0 +1,93 @@
+/* Blue */
+$lightBlue: #4f94d4;
+$darkBlue: #054972;
+
+/* Arancione */
+$orange: #ff901d;
+
+/* Red */
+$lightRed: #f76969;
+$red: #ff3c3c;
+$darkRed: #c91111;
+
+/* Grey */
+$lightGrey: #ddd;
+$grey: #585858;
+$darkGrey: #1a1a1a;
+
+/* Green */
+$lightGreen: #2fbf4e;
+
+
+/** WLANK THEME **/
+
+/*-------------------------
+*  Grid
+*--------------------------*/
+$columns: 12;
+$gutter: 10px;
+$spacing: 20;
+
+/*-------------------------
+*  Spacing
+*--------------------------*/
+$paddings: ('pt': 'padding-top', 'pr': 'padding-right', 'pb': 'padding-bottom', 'pl': 'padding-left');
+$margins: ('mt': 'margin-top', 'mr': 'margin-right', 'mb': 'margin-bottom', 'ml': 'margin-left');
+
+/*-------------------------
+*  Media Queries
+*--------------------------*/
+$xs: 480px;
+$sm: 600px;
+$md: 800px;
+$lg: 1190px;
+$xl: 1440px;
+$xxl: 1700px;
+
+$breakpoints: ('xs': $xs, 'sm': $sm, 'md': $md, 'lg': $lg, 'xl': $xl);
+
+/*-------------------------
+*  Colours
+*--------------------------*/
+$primary-color: #000000;
+$white: #fff;
+$black: #000;
+$darker-grey: #333333;
+$dark-grey: #636363;
+$grey: #898989;
+$light-grey: #bcbcbc;
+$lighter-grey: #f1f1f1;
+
+// custom colours
+
+$colours: ('white': $white, 'black': $black, 'light-grey': $light-grey);
+
+/*-------------------------
+*  Typography
+*--------------------------*/
+$base-font: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+$base-fs: 18px;
+
+/*-------------------------
+*  Animations
+*--------------------------*/
+$time: 320ms;
+$time_slow: 700ms;
+
+$swing: cubic-bezier(0.55, 0, 0.1, 1);
+$swift: cubic-bezier(0.4, 0, 0.2, 1);
+$ease: ease;
+
+$transition-default: all $time $ease;
+
+/*-------------------------
+*  MAXI HEADER
+*--------------------------*/
+$maxi_header_width: 326px;
+
+/*-------------------------
+*  FONTS
+*--------------------------*/
+$icon-font: 'sunset-icon';
+$body-font: 'Rale', 'Helvetica Neue', 'Helvetica', Arial, Verdana, sans-serif;

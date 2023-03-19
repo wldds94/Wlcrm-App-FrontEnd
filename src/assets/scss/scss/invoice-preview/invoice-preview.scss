@@ -1,0 +1,47 @@
+// /* *
+//  * Variables
+//  * */
+// @import 'scss/variables/colors';
+
+// /* *
+//   * Mixins
+//   * */
+// @import 'scss/mixins/scrollbar';
+// @import 'scss/mixins/keyframes';
+
+
+/* *
+  * Invoice
+  * */
+@import './invoice';
+@import './header';
+@import './modal';
+
+/* *
+  * Print
+  * */
+  @import './print/print-loader';
+
+/* content editable */
+*[contenteditable] {
+    border-radius: 0.25em;
+    min-width: 1em;
+    outline: 0;
+}
+
+*[contenteditable] {
+    cursor: pointer;
+}
+
+*[contenteditable]:hover,
+*[contenteditable]:focus,
+td:hover *[contenteditable],
+td:focus *[contenteditable],
+img.hover {
+    background: #DEF;
+    box-shadow: 0 0 1em 0.5em #DEF;
+}
+
+span[contenteditable]/* , p[contenteditable] */ {
+    display: inline-block;
+}

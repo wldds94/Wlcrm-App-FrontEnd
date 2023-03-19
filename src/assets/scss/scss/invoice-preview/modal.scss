@@ -1,0 +1,230 @@
+.invoice-preview-container {
+  .modal-wrapper {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(108, 108, 108, 0.75);
+    visibility: hidden;
+    opacity: 0;
+    // -webkit-transition: all 0.25s ease-in-out;
+    // -moz-transition: all 0.25s ease-in-out;
+    // -o-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+
+    &.open {
+      opacity: 1;
+      visibility: visible;
+      z-index: 1;
+
+      .modal {
+        margin-top: -200px;
+        opacity: 1;
+      }
+    }
+
+    .modal {
+      width: 500px;
+      height: 400px;
+      display: block;
+      position: relative;
+      top: 50%;
+      /* left: 50%; */
+      background: #fff;
+      opacity: 0;
+      transition: all 0.5s ease-in-out;
+      overflow: visible;
+      margin: auto;
+
+      // width:500px;
+      // height:400px;
+      // display:block;
+      // // margin:50% 0 0 -300px;
+      // position:relative;
+      // top:50%; left:50%;
+      // background:#fff;
+      // opacity:0;
+      // transition: all 0.5s ease-in-out;
+      // // overflow-x: hidden;
+      // overflow: visible;
+    }
+
+    .head {
+      position: relative;
+      // width:90%;
+      height: 60px;
+      padding: 1em 1em;
+      // overflow: hidden;
+      background: #0192e5;
+
+      .modal-btn-close {
+        width: 32px;
+        height: 32px;
+        display: block;
+        float: right;
+      }
+
+      h5 {
+        font-weight: 600;
+        color: #fff;
+      }
+
+      .email-img-container {
+        padding: 10px 10px 10px 10px;
+        /* margin: 10px 10px; */
+        background-color: grey;
+        top: -30px;
+        box-sizing: border-box;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 80px;
+        /* Need a specific value to work */
+        height: 80px;
+        text-align: center;
+        font-size: 30px;
+        border-radius: 50%;
+        background: #fff;
+        color: #0192e5;
+
+        &>i {
+          line-height: 2;
+        }
+      }
+    }
+
+    .content {
+      padding: 5%;
+      overflow: auto;
+      background: aliceblue;
+      /* height: 20vw; */
+      /* margin: auto; */
+      /* bottom: 0; */
+      /* position: relative; */
+      height: calc(100% - 50px);
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      @include scrollbars(3px, $darkBlue, $lightBlue);
+    }
+  }
+
+  .modal-btn-close::before,
+  .modal-btn-close::after {
+    content: '';
+    width: 32px;
+    height: 6px;
+    display: block;
+    background: #fff;
+  }
+
+  .modal-btn-close::before {
+    margin-top: 12px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  .modal-btn-close::after {
+    margin-top: -6px;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+
+  /** FORM TEMPLATE **/
+  .email-form-template {
+    .form-group {
+      margin-bottom: 5px;
+      font-size: 14px;
+
+      .form-control:focus {
+        box-shadow: unset;
+        border-color: #0192e5;
+      }
+    }
+
+    .form-check-input:focus {
+      box-shadow: unset;
+    }
+
+    *::placeholder {
+      color: black;
+      opacity: 0.4;
+    }
+  }
+
+  /** Send Button **/
+  input.email-sender[type=submit] {
+    margin-left: 0.5em;
+    height: 40px;
+    padding: 0.2em 1em 0.2em 2.25em;
+    /* font-size: 3em; */
+    font-weight: bold;
+    color: #696666;
+    background-size: 20px 62px !important;
+    border-radius: 7px;
+    border: 3px solid #F9C23C;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+  }
+
+  // input.email-sender[type=submit]{
+  //   margin-left: 0.5em;
+  //   height: 2.5em;
+  //   padding: 0.2em 1em 0.2em 2.25em;
+  //   font-size: 3em;
+  //   font-weight: bold;
+  //   // font-family: "Open Sans";
+  //   // text-transform: uppercase;
+  //   color: #696666;
+  //   // background: url(https://i.imgur.com/Th606mh.png) no-repeat scroll 0.75em 0.07em transparent;
+  //   background-size: 54px 204px;
+  //   border-radius: 2em;
+  //   border: 0.15em solid #F9C23C;
+  //   cursor: pointer;
+  //   transition: all 0.3s ease 0s;
+  // }
+  input.email-sender[type="submit"]:hover {
+    color: #fff;
+    background-color: #EAA502;
+    border-color: #EAA502;
+    // background-position: 0.5em bottom;
+    background-position: 0.5em -1.8em;
+    // -webkit-transition: all 0.3s ease;
+    // -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+
+  input.email-sender[type="submit"]:focus {
+    background-position: 2em -4em;
+    // -webkit-transition: all 0.3s ease;
+    // -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+
+  @media (max-width: 1130px) {
+    input.email-sender[type="submit"]:focus {
+      color: #fff;
+      background-color: #EAA502;
+      border-color: #EAA502;
+      // background-position: 0.5em bottom;
+      background-position: 0.5em -1.8em;
+    }
+  }
+}
+
+
+/* Webfonts */
+
+// @font-face {
+//     font-family: 'Open Sans';
+//     font-style: normal;
+//     font-weight: 700;
+//     src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://themes.googleusercontent.com/static/fonts/opensans/v8/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+// }

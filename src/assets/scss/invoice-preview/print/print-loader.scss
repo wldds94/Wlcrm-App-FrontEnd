@@ -1,0 +1,107 @@
+$dotColor: #979797; // #cecece;
+
+#wlcrm-print-loader.background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(245, 245, 245, 1);
+    z-index: 9;
+
+    .loader-info {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -20px 0 0 -50px;
+        z-index: 9;
+
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+
+        .dots {
+            height: 40px;
+            // position: absolute;
+            // top: 50%;
+            // left: 50%;
+            // margin: -20px 0 0 -50px;
+            // z-index: 9;
+            display: flex;
+            justify-content: center;
+            gap: 7px;
+    
+            span {
+                -webkit-transition: all 6000ms ease;
+                transition: all 4000ms ease;
+                background: rgba($dotColor, 0.5);
+                height: 15px;
+                width: 15px;
+                // margin: 0 5px 0 0;
+                display: block; //  inline-block;
+                border-radius: 50%;
+                animation: wave 2s ease infinite;
+                -webkit-animation: wave 2s ease infinite;
+    
+                &:nth-child(1) {
+                    animation-delay: 0;
+                    -webkit-animation-delay: 0;
+                }
+    
+                &:nth-child(2) {
+                    animation-delay: 100ms;
+                    -webkit-animation-delay: 100ms;
+                }
+    
+                &:nth-child(3) {
+                    animation-delay: 200ms;
+                    -webkit-animation-delay: 200ms;
+                }
+            }
+        }
+    }
+
+    .loader-back {
+        position: absolute;
+        bottom: 1rem;
+        left: 1rem;
+        font-size: 2rem;
+        color: #979797b3;
+    }
+}
+
+@-webkit-keyframes wave {
+
+    0%,
+    40%,
+    100% {
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0);
+        background-color: rgba($dotColor, .5);
+    }
+
+    10% {
+        -webkit-transform: translate(0, -7px);
+        transform: translate(0, -7px);
+        background-color: rgba($dotColor, 1);
+    }
+}
+
+@keyframes wave {
+
+    0%,
+    40%,
+    100% {
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0);
+        background-color: rgba($dotColor, .5);
+    }
+
+    10% {
+        -webkit-transform: translate(0, -7px);
+        transform: translate(0, -7px);
+        background-color: rgba($dotColor, 1);
+    }
+}
