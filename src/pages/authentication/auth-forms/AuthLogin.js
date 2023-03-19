@@ -54,21 +54,29 @@ const AuthLogin = () => {
 
         try {
             const resultAction = await dispatch(userLogin(values)).unwrap()
-
-            console.log('Success');
-
-            // console.log(location.state?.from?.pathname); console.log(location.state?.from?.pathname.substring(1));
-            const redirect = location.state?.from?.pathname.length ?
+            console.log(resultAction);
+            
+            if (resultAction?.status) {
+                console.log('Success');
+                // console.log(location.state?.from?.pathname); console.log(location.state?.from?.pathname.substring(1));
+                const redirect = location.state?.from?.pathname.length ?
                 (
                     location.state?.from?.pathname.substring(1) !== 'logout' ? location.state?.from?.pathname : "/"
                 ) : (
                     resultAction?.redirect ? resultAction.redirect : '/'
                 )
-            // const redirect = linkToRedirect // location.state?.from?.pathname.length ? location.state?.from?.pathname : (resultAction?.redirect ? resultAction.redirect : '/')
-            console.log(redirect);
-            navigate(redirect);
+                // const redirect = linkToRedirect // location.state?.from?.pathname.length ? location.state?.from?.pathname : (resultAction?.redirect ? resultAction.redirect : '/')
+                console.log(redirect);
+                navigate(redirect);
+                setStatus({ success: true });
+            } else {
+                console.log('Failed');
+    
+                setStatus({ success: false });
+                setErrors({ submit: resultAction.message });
+            }
+            
 
-            setStatus({ success: true });
             setSubmitting(false);
         } catch (err) {
             console.log('Failed');

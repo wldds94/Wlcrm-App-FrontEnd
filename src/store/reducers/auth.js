@@ -25,13 +25,13 @@ const auth = createSlice({
     reducers: {
         cleanAuth: () => initialState,
         logOut: (state, action) => {
-            // state.user = null
-            // state.accessToken = null
+            state.user = null
+            state.accessToken = null
             localStorage.removeItem('wlcrmUserToken')
-            state = {
-                ...initialState,
-                accessToken: null
-            }
+            // state = {
+            //     ...initialState,
+            //     accessToken: null
+            // }
         },
     },
     extraReducers(builder) {
@@ -42,20 +42,80 @@ const auth = createSlice({
             })
             .addCase(userLogin.fulfilled, (state, action) => {
                 state.status = 'succeeded'
-                console.log(action.payload);
+                const {payload} = action
+                // console.log(action.payload);
 
-                const { user, jwt } = action.payload?.data
-                // console.log(user);
-                state.user = user
-                state.accessToken = jwt // console.log(action.payload);
+                if (payload.status) {
+                    const { user, jwt } = action.payload?.data
+                    // console.log(user);
+                    state.user = user
+                    state.accessToken = jwt // console.log(action.payload);
 
-                localStorage.removeItem('wlcrmUserToken')
-                localStorage.setItem('wlcrmUserToken', jwt);
+                    localStorage.removeItem('wlcrmUserToken')
+                    localStorage.setItem('wlcrmUserToken', jwt);
+                }
+                
             })
             .addCase(userLogin.rejected, (state, action) => {
                 state.status = 'failed'
                 state.error = action.error.message // console.log(state.error); console.log(action);
+                console.log(action);
+            })
+            // VALIDATION
+            .addCase(tokenValidation.pending, (state, action) => {
+                state.status = 'loading'
+                state.validateStatus = 'loading'
+            })
+            .addCase(tokenValidation.fulfilled, (state, action) => {
+                // console.log(action.payload?.data);
+                const { status } = action.payload
+                state.status = 'succeeded'
+                state.validateStatus = 'succeeded'
+
+                const { user } = action.payload?.data
+
+                if (!isDeepEqual(user, state.user)) {
+                    state.user = user
+                }
+                // if (!status) {
+                //     state.status = 'failed'
+                //     state.validateStatus = 'failed'
+                //     state.user = null
+                //     state.accessToken = null
+
+                //     localStorage.removeItem('wlcrmUserToken')
+                // } else {
+                    
+
+                // }
+            })
+            .addCase(tokenValidation.rejected, (state, action) => {
+                localStorage.removeItem('wlcrmUserToken')
+                
+                state.user = null
+                state.accessToken = null
+
+                state.status = 'failed'
+                state.validateStatus = 'failed'
+                state.error = action.error.message // console.log(state.error); console.log(action);
                 console.log(state.error);
+            })
+            // Reset Password
+            .addCase(sendResetPassword.pending, (state, action) => {
+                state.status = 'loading'
+            })
+            .addCase(sendResetPassword.fulfilled, (state, action) => {
+                state.status = action.payload?.status ? 'succeeded' : 'failed'
+                // state.data = action.payload?.data
+
+                // console.log(state);
+                console.log(action);
+            })
+            .addCase(sendResetPassword.rejected, (state, action) => {
+                console.log(action);
+
+                state.status = 'failed'
+                state.error = action.error.message
             })
             // SAVE Reset Password
             .addCase(changeNewPassword.pending, (state, action) => {
@@ -69,6 +129,49 @@ const auth = createSlice({
                 console.log(action);
             })
             .addCase(changeNewPassword.rejected, (state, action) => {
+                console.log(action);
+
+                state.status = 'failed'
+                state.error = action.error.message
+            })
+            // UPDATE Reset Password
+            .addCase(updateNewPassword.pending, (state, action) => {
+                state.status = 'loading'
+            })
+            .addCase(updateNewPassword.fulfilled, (state, action) => {
+                state.status = action.payload?.status ? 'succeeded' : 'failed'
+                // state.data = action.payload?.data
+
+                // console.log(state);
+                console.log(action);
+            })
+            .addCase(updateNewPassword.rejected, (state, action) => {
+                console.log(action);
+
+                state.status = 'failed'
+                state.error = action.error.message
+            })
+            // SAVE Reset NEW Email
+            .addCase(updateNewEmail.pending, (state, action) => {
+                state.status = 'loading'
+            })
+            .addCase(updateNewEmail.fulfilled, (state, action) => {
+                const {status} = action.payload
+                // state.status = status ? 'succeeded' : 'failed'
+                // state.data = action.payload?.data
+                if (status) {
+                    console.log('Logout...');
+                    state.user = null
+                    state.accessToken = null
+                    state.validateStatus = 'failed'
+                    state.status = 'failed'
+
+                    localStorage.removeItem('wlcrmUserToken')
+                }
+                // console.log(state);
+                console.log(action);
+            })
+            .addCase(updateNewEmail.rejected, (state, action) => {
                 console.log(action);
 
                 state.status = 'failed'
@@ -116,9 +219,36 @@ export const getAuthvalidateStatus = createSelector(
 
 // ACTIONS
 export const userLogin = createAsyncThunk('auth/login', async (credentials) => {
+    try {
+        // console.log(credentials);
+        const response = await axios.post('/auth', credentials)
+        // console.log(response);
+        return response.data
+    } catch (error) {
+        // console.log(error);
+        return error?.response?.data // return error.message
+    }
     // console.log(credentials);
-    const response = await axios.post('/auth', credentials)
+    // const response = await axios.post('/auth', credentials)
+    // console.log(response);
+    // return response.data
+})
+
+export const tokenValidation = createAsyncThunk('auth/validate', async () => {
+    // console.log(credentials);
+    const response = await axiosPrivate.post('/auth/validate')
     return response.data
+})
+
+// Reset PASSWORD
+export const sendResetPassword = createAsyncThunk('auth/reset_password', async (data) => {
+    try {
+        // const axiosPrivate = useAxiosPrivate()
+        const response = await axios.post('/auth/reset_password', data)
+        return response.data
+    } catch (error) {
+        return error.message
+    }
 })
 
 // Save New Password POST (by Key & login)
@@ -126,6 +256,28 @@ export const changeNewPassword = createAsyncThunk('auth/reset_password/save', as
     try {
         // const axiosPrivate = useAxiosPrivate()
         const response = await axios.post('/auth/reset_password/save', data)
+        return response.data
+    } catch (error) {
+        return error.message
+    }
+})
+
+// Save New Password POST (by OLD & AUTH)
+export const updateNewPassword = createAsyncThunk('auth/reset_password/update', async (data) => {
+    try {
+        // const axiosPrivate = useAxiosPrivate()
+        const response = await axiosPrivate.post('/auth/reset_password/update', data)
+        return response.data
+    } catch (error) {
+        return error.message
+    }
+})
+
+// UPDATE EMAIL
+export const updateNewEmail = createAsyncThunk('auth/email/update', async (data) => {
+    try {
+        // const axiosPrivate = useAxiosPrivate()
+        const response = await axiosPrivate.post('/auth/email/update', data)
         return response.data
     } catch (error) {
         return error.message

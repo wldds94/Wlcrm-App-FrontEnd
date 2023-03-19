@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const BASE_URL = 'http://wlcrmapp.it/index.php/wp-json/wlcrmapp/v1'; // process.env.API_BASE_URL;
-export const BASE_HEADER_PARAM = 'X-Requested-With';
+export const BASE_HEADER_PARAM = 'XWlcrm-Token';
 
 export default axios.create({
   baseURL: BASE_URL,

@@ -16,10 +16,10 @@ const dashboard = {
     type: 'group',
     children: [
         {
-            id: 'clients/view',
+            id: 'clients',
             title: 'Rubrica',
             type: 'item',
-            url: '/clients/view',
+            url: '/clients',
             regexURI: /\/clients/,
             icon: icons.PeopleOutlineIcon,
             breadcrumbs: false,

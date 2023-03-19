@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { logOut } from 'store/reducers/auth';
 
 const LogOut = () => {
+    // console.log('LogOut');
     // Redux
     const dispatch = useDispatch();
 
@@ -19,7 +20,7 @@ const LogOut = () => {
         dispatch(logOut());
 
         setHaveToRedirect(true);
-    }, [])
+    }, [dispatch])
 
     if (haveToRedirect) {
         return <Navigate to="/" /* state={{ from: location }} */ replace={true} />

@@ -17,7 +17,7 @@ const settings = {
             id: 'settings',
             title: 'Settings',
             type: 'item',
-            url: '/settings/general',
+            url: '/settings',
             regexURI: /\/settings/,
             icon: icons.MiscellaneousServicesIcon,
             breadcrumbs: false,

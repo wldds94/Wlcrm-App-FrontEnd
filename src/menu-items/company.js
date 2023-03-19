@@ -14,10 +14,10 @@ const company = {
     type: 'group',
     children: [
         {
-            id: '/company/profile',
+            id: '/company',
             title: 'Informazioni Base',
             type: 'item',
-            url: '/company/profile',
+            url: '/company',
             regexURI: /\/company/,
             icon: icons.StoreIcon,
             breadcrumbs: false,

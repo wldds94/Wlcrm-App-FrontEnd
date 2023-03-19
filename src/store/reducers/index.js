@@ -4,18 +4,16 @@ import { combineReducers } from 'redux';
 // project import
 import auth from './auth';
 import menu from './menu';
-// import client from './client';
-// import notices from './notices';
-// import options from './options';
+import notices from './notices';
+import options from './options';
+import client from './client';
 // import invoice from './invoice';
 // import calendar from './calendar';
 // import clinical from './clinical';
-// import user from './user';
-// // import account from './account';
-// import chat from './chat';
+import users from './users';
+import chat from './chat';
 // import shopping from './shopping';
-// // encrypting
-// import encrypt from './encrypt';
+import encrypt from './encrypt';
 
 // // mailer
 // import mailer from './mailer';
@@ -25,19 +23,18 @@ import menu from './menu';
 const reducers = combineReducers({
     menu,
     auth,
-    // client,
-    // notices,
-    // options,
+    notices,
+    encrypt,
+    // --- TO INITIAL DISPATCH
+    users,
+    options,
+    client,
     // invoice,
     // calendar,
     // clinical,
-    // user,
-    // chat,
+    chat,
     // shopping,
-    // // mailer
     // mailer,
-    // // encrypt
-    // encrypt,
 });
 
 export default reducers;
