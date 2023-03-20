@@ -9,7 +9,7 @@ import { fetchUsers, getAllUsers, getUsersStatus } from 'store/reducers/users';
 import { fetchOptions, getOptions, getOptionsStatus } from 'store/reducers/options';
 import { fetchClients, getAllClients, getClientsStatus } from 'store/reducers/client';
 // import { fetchInvoices, getAllInvoices, getInvoicesStatus } from 'store/reducers/invoice';
-// import { fetchEvents, getCalendarEvents, getCalendarStatus } from 'store/reducers/calendar';
+import { fetchEvents, getCalendarEvents, getCalendarStatus } from 'store/reducers/calendar';
 // import { fetchClinical, getClinicalList, getClinicalStatus } from 'store/reducers/clinical';
 import { fetchMessages, getAllMessages, getChatStatus } from 'store/reducers/chat';
 // import { fetchShopping, getShoppingList, getShoppingStatus } from 'store/reducers/shopping';
@@ -45,9 +45,9 @@ const Dispatcher = ({ children, ...others }) => {
     // // // INOVICES
     // const invoicesStatus = useSelector(getInvoicesStatus)
     // const invoicesList = useSelector(getAllInvoices)
-    // // // CALENDAR - SCHEDULE
-    // const calendarStatus = useSelector(getCalendarStatus)
-    // const eventsList = useSelector(getCalendarEvents)
+    // // CALENDAR - SCHEDULE
+    const calendarStatus = useSelector(getCalendarStatus)
+    const eventsList = useSelector(getCalendarEvents)
     // // // CLINICAL
     // const clinicalStatus = useSelector(getClinicalStatus)
     // const clinicalList = useSelector(getClinicalList)
@@ -81,10 +81,10 @@ const Dispatcher = ({ children, ...others }) => {
                 dispatch(fetchClients())
             }
 
-            // // console.log(eventsList);
-            // if (eventsList === null || eventsList === undefined) {
-            //     dispatch(fetchEvents())
-            // }
+            // console.log(eventsList);
+            if (eventsList === null || eventsList === undefined) {
+                dispatch(fetchEvents())
+            }
 
             // // console.log(clinicalList);
             // if (clinicalList === null || clinicalList === undefined) {
@@ -112,15 +112,15 @@ const Dispatcher = ({ children, ...others }) => {
     const isLoadingAjax = usersStatus === 'loading'
         || optionsStatus === 'loading'
         || clientsStatus === 'loading'
+        || calendarStatus === 'loading'
         // || invoicesStatus === 'loading'
-        // || calendarStatus === 'loading'
         // || clinicalStatus === 'loading'
         // CHAT -> CUSTOM
 
     const hasInitialized = usersList != null
         && optionsList !== null
         && clientsList !== null
-        // && eventsList != null
+        && eventsList != null
         // && invoicesList != null
         // && shoppingList != null
         // && clinicalList != null

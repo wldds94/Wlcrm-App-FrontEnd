@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { selectCurrentUser } from 'store/reducers/auth'
 
 // hooks
-import useUsers from './useUsers'
+import useUsers from '../useUsers'
 
 const useCurrentAccount = () => {
     const users = useUsers() 

@@ -17,7 +17,7 @@ import ChatChannelPage from './channel/ChatChannelPage';
 
 // hooks
 import useUsers from 'hooks/redux/useUsers';
-import useCurrentAccount from 'hooks/redux/useCurrentAccount';
+import useCurrentAccount from 'hooks/redux/aggregate/useCurrentAccount';
 
 // assets
 import { GrChannel } from 'react-icons/gr'

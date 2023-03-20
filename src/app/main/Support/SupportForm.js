@@ -27,7 +27,7 @@ import Uploader from 'components/input/uploader/Uploader';
 // icons
 import { MdSend } from 'react-icons/md'
 import { isDeepEqual } from 'utils/equal';
-import useCurrentAccount from 'hooks/redux/useCurrentAccount';
+import useCurrentAccount from 'hooks/redux/aggregate/useCurrentAccount';
 
 const convertArrayToObject = (array, key) => {
     const initialValue = {};

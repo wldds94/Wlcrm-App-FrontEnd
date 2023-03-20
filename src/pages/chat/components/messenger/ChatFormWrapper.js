@@ -9,7 +9,7 @@ import {
 
 // project import
 import ChatForm from '../form/ChatForm';
-import useCurrentAccount from 'hooks/redux/useCurrentAccount';
+import useCurrentAccount from 'hooks/redux/aggregate/useCurrentAccount';
 
 const ChatFormWrapper = ({
     ...other

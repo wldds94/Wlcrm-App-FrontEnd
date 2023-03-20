@@ -8,7 +8,7 @@ import notices from './notices';
 import options from './options';
 import client from './client';
 // import invoice from './invoice';
-// import calendar from './calendar';
+import calendar from './calendar';
 // import clinical from './clinical';
 import users from './users';
 import chat from './chat';
@@ -30,7 +30,7 @@ const reducers = combineReducers({
     options,
     client,
     // invoice,
-    // calendar,
+    calendar,
     // clinical,
     chat,
     // shopping,

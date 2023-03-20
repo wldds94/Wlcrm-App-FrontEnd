@@ -4,7 +4,7 @@ import React from 'react'
 import AccountProfilePanel from './common/AccountProfilePanel';
 
 // hooks
-import useCurrentAccount from 'hooks/redux/useCurrentAccount';
+import useCurrentAccount from 'hooks/redux/aggregate/useCurrentAccount';
 
 const AccountProfilePage = () => {
     console.log('AccountProfilePage');

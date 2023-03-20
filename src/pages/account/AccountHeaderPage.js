@@ -4,7 +4,7 @@ import React from 'react'
 import RouterHeaderLayout from 'components/router-page/RouterHeaderLayout'
 
 // hooks
-import useCurrentAccount from 'hooks/redux/useCurrentAccount'
+import useCurrentAccount from 'hooks/redux/aggregate/useCurrentAccount'
 
 const AccountHeaderPage = ({
     headerNavItems = [],

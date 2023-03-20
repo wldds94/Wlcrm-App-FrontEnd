@@ -35,22 +35,13 @@ export const getDateFormat = (date = false, daysDeelay = 0, formatDate = 'DD MMM
     return search.format(formatDate)
 }
 
-// /**
-//  * 
-//  */
-// export const getAge = (dateString) => {
-//     const dayjsBirthday = dayjs(dateString);
-//     // console.log(dayjs().diff(dayjsBirthday, 'year'));
-//     return dayjs().diff(dayjsBirthday, 'year')
-//     // var today = new Date();
-//     // var birthDate = new Date(dateString);
-//     // var age = today.getFullYear() - birthDate.getFullYear();
-//     // var m = today.getMonth() - birthDate.getMonth();
-//     // if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-//     //     age--;
-//     // }
-//     // return age;
-// }
+/**
+ * 
+ */
+export const getAge = (dateString) => {
+    const dayjsBirthday = dayjs(dateString);
+    return dayjs().diff(dayjsBirthday, 'year')
+}
 
 // export const isInTheFuture = (date) => {
 //     // console.log(date);

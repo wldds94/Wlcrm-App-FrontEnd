@@ -11,11 +11,11 @@ import AppMain from 'app/main/AppMain';
 // //  */
 // const DashboardRouterPage = Loadable(lazy(() => import('pages/dashboard/DashboardRouterPage')));
 // /**
-//  * SCHEDULE
+//  * CALENDAR
 //  */
-// const ScheduleRouterPage = Loadable(lazy(() => import('pages/schedule/ScheduleRouterPage')));
-// const ScheduleListPage = Loadable(lazy(() => import('pages/schedule/panel/list/ScheduleListPage')));
-// const ScheduleTrashPage = Loadable(lazy(() => import('pages/schedule/panel/trash/ScheduleTrashPage')));
+const ScheduleRouterPage = Loadable(lazy(() => import('pages/calendar/ScheduleRouterPage')));
+const ScheduleListPage = Loadable(lazy(() => import('pages/calendar/panel/list/ScheduleListPage')));
+const ScheduleTrashPage = Loadable(lazy(() => import('pages/calendar/panel/trash/ScheduleTrashPage')));
 /**
  * CHAT
  */
@@ -95,21 +95,21 @@ const MainRoutes = {
     //         path: '/dashboard',
     //         element: <DashboardRouterPage />
     //     },
-    //     // SCHEDULE
-    //     {
-    //         path: '/schedule',
-    //         element: <ScheduleRouterPage />,
-    //         children: [
-    //             {
-    //                 path: '', // anagrafica',
-    //                 element: <ScheduleListPage />
-    //             },
-    //             {
-    //                 path: 'trash', // anagrafica',
-    //                 element: <ScheduleTrashPage />
-    //             },
-    //         ]
-    //     },
+        // SCHEDULE
+        {
+            path: '/schedule',
+            element: <ScheduleRouterPage />,
+            children: [
+                {
+                    path: '', // anagrafica',
+                    element: <ScheduleListPage />
+                },
+                {
+                    path: 'trash', // anagrafica',
+                    element: <ScheduleTrashPage />
+                },
+            ]
+        },
         // CHAT
         {
             path: '/chat/channel/:channelID',

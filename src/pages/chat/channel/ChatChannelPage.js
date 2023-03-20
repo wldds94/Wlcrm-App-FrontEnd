@@ -4,7 +4,7 @@ import React, { useMemo } from 'react'
 import Messenger from './components/Messenger'
 
 // hooks
-import useCurrentAccount from 'hooks/redux/useCurrentAccount'
+import useCurrentAccount from 'hooks/redux/aggregate/useCurrentAccount'
 import useMessages from 'hooks/redux/useMessages'
 
 // utils
