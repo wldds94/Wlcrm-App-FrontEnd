@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux';
 import { getCalendarConfig } from 'store/reducers/calendar';
 
 // project import
-// import ScheduleCalendarPage from './calendar/ScheduleCalendarPage';
 import SchedulePanelRouterPage from './SchedulePanelRouterPage';
+import ScheduleCalendarPage from './scheduler/ScheduleCalendarPage';
 
 const ScheduleRouterPage = () => {
     console.log('Scheduler');
@@ -22,15 +22,15 @@ const ScheduleRouterPage = () => {
 
     return (
         <>
-            {/* {currentMode === "calendar" ? 
+            {currentMode === "calendar" ? 
                 <>
                     <ScheduleCalendarPage />
                 </> : 
                 <>
                     <SchedulePanelRouterPage />
                 </>
-            } */}
-            <SchedulePanelRouterPage />
+            }
+            {/* <SchedulePanelRouterPage /> */}
         </>
     )
 }

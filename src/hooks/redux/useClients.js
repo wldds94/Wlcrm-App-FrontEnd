@@ -36,7 +36,7 @@ const useClients = () => {
                 color: getRandomColor(last_name + " " + first_name), // '#1890ff', // 
                 name: last_name + " " + first_name, // meta?.first_name + " " + user?.meta?.last_name,
                 text: last_name + " " + first_name, // + " " + item?.telephone,
-                chiperId: crypt(config.salt, item?.id), // chiperId: cryptoJS.encrypt(String(item?.id)), // getUserChiperString(item)),
+                chiperId: crypt(config.salt, item?.id), // chiperId: cryptoJS.encrypt(String(item?.id)), // getUserChiperString(item)), // cryptoJS.encrypt(String(item?.id)), 
                 fullAddress: getUserFullAddress({
                     ...item,
                     address: address,

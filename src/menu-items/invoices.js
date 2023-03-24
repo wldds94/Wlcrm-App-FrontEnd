@@ -13,10 +13,10 @@ const invoices = {
     type: 'group',
     children: [
         {
-            id: 'invoices/list',
+            id: 'invoices',
             title: 'Fatture',
             type: 'item',
-            url: '/invoices/list',
+            url: '/invoices',
             regexURI: /\/invoices/,
             icon: icons.RequestQuoteIcon,
             breadcrumbs: false,

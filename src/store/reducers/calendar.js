@@ -44,7 +44,42 @@ const calendar = createSlice({
     name: "calendar",
     initialState,
     reducers: {
-
+        cleanEvents: () => initialState,
+        copyRow: {
+            reducer(state, action) {
+                console.log(action.payload);
+                state.copyingRow = {
+                    ...action.payload,
+                }
+            },
+        },
+        savePreferences(state, action) {
+            state.config = {
+                ...action.payload,
+                default: {
+                    ...schedulerConfig
+                }
+            }
+            const values = action.payload
+            localStorage.removeItem(schedulerConfig?.sessionKeyMode)
+            localStorage.removeItem(schedulerConfig?.sessionKeyView)
+            localStorage.removeItem(schedulerConfig?.sessionKeyOnlyUser)
+        
+            localStorage.setItem(schedulerConfig?.sessionKeyMode, values?.mode)
+            localStorage.setItem(schedulerConfig?.sessionKeyView, values?.view)
+            localStorage.setItem(schedulerConfig?.sessionKeyOnlyUser, values?.onlyUser)
+        },
+        setPreferencesMode(state, action) {
+            const {mode} = action?.payload
+            state.config = {
+                ...state.config,
+                mode: mode
+            }// ?.mode = action?.payload
+        },
+        syncCalendarData(state, action) {
+            state.data = [...state.sync.data]
+            state.sync = { ...initialSync }
+        }
     },
     extraReducers(builder) {
         builder

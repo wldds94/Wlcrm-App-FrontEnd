@@ -22,7 +22,7 @@ import {
     TodayButton,
     Resources,
 } from '@devexpress/dx-react-scheduler-material-ui';
-import useSchedulerData from 'hooks/redux/useSchedulerData';
+import useSchedulerData from 'hooks/redux/aggregate/useSchedulerData';
 
 // redux
 import { getOptionsSchedulerSettings } from 'store/reducers/options';
@@ -30,17 +30,21 @@ import { useSelector } from 'react-redux';
 
 // config
 import { schedulerConfig } from 'config';
+// utils
+import { getDayJS } from 'utils/libs/dayjsUtils';
 
 const SchedulerDatePicker = ({
     onAddAppointment = (data) => { return }
 }) => {
+    const dayJS = getDayJS()
+
     const schedulerSettings = useSelector(getOptionsSchedulerSettings)
     const schedulerOption = {
         ...schedulerConfig,
         ...schedulerSettings,
     }
 
-    const { data/* : events */, users, clients } = useSchedulerData()
+    const { data = []/* : events */, users = [], clients = [] } = useSchedulerData()
 
     const [resourcesState, setResourcesState] = useState([{
         fieldName: 'userId',
@@ -80,8 +84,8 @@ const SchedulerDatePicker = ({
         console.log(addedAppointment);
 
         const data = {
-            startDate: addedAppointment?.startDate,
-            endDate: addedAppointment?.endDate,
+            startDate: dayJS(addedAppointment?.startDate).format(),
+            endDate: dayJS(addedAppointment?.endDate).format(),
         }
         onAddAppointment(data)
     }

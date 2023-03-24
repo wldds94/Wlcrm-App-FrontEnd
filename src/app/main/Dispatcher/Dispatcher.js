@@ -8,11 +8,11 @@ import { getAuthStatus } from "store/reducers/auth";
 import { fetchUsers, getAllUsers, getUsersStatus } from 'store/reducers/users';
 import { fetchOptions, getOptions, getOptionsStatus } from 'store/reducers/options';
 import { fetchClients, getAllClients, getClientsStatus } from 'store/reducers/client';
-// import { fetchInvoices, getAllInvoices, getInvoicesStatus } from 'store/reducers/invoice';
+import { fetchInvoices, getAllInvoices, getInvoicesStatus } from 'store/reducers/invoice';
 import { fetchEvents, getCalendarEvents, getCalendarStatus } from 'store/reducers/calendar';
-// import { fetchClinical, getClinicalList, getClinicalStatus } from 'store/reducers/clinical';
+import { fetchClinical, getClinicalList, getClinicalStatus } from 'store/reducers/clinical';
 import { fetchMessages, getAllMessages, getChatStatus } from 'store/reducers/chat';
-// import { fetchShopping, getShoppingList, getShoppingStatus } from 'store/reducers/shopping';
+import { fetchShopping, getShoppingList, getShoppingStatus } from 'store/reducers/shopping';
 
 // project import
 import AjaxLoading from 'components/loader/AjaxLoading';
@@ -42,21 +42,21 @@ const Dispatcher = ({ children, ...others }) => {
     // // CLIENTS
     const clientsList = useSelector(getAllClients)
     const clientsStatus = useSelector(getClientsStatus)
-    // // // INOVICES
-    // const invoicesStatus = useSelector(getInvoicesStatus)
-    // const invoicesList = useSelector(getAllInvoices)
+    // // INOVICES
+    const invoicesStatus = useSelector(getInvoicesStatus)
+    const invoicesList = useSelector(getAllInvoices)
     // // CALENDAR - SCHEDULE
     const calendarStatus = useSelector(getCalendarStatus)
     const eventsList = useSelector(getCalendarEvents)
     // // // CLINICAL
-    // const clinicalStatus = useSelector(getClinicalStatus)
-    // const clinicalList = useSelector(getClinicalList)
+    const clinicalStatus = useSelector(getClinicalStatus)
+    const clinicalList = useSelector(getClinicalList)
     // // CHAT
     const messages = useSelector(getAllMessages)
     const chatStatus = useSelector(getChatStatus)
-    // // // SHOPPING
-    // const shoppingStatus = useSelector(getShoppingStatus)
-    // const shoppingList = useSelector(getShoppingList)
+    // // SHOPPING
+    const shoppingStatus = useSelector(getShoppingStatus)
+    const shoppingList = useSelector(getShoppingList)
 
     /**
      * LOAD DATA
@@ -86,25 +86,25 @@ const Dispatcher = ({ children, ...others }) => {
                 dispatch(fetchEvents())
             }
 
-            // // console.log(clinicalList);
-            // if (clinicalList === null || clinicalList === undefined) {
-            //     dispatch(fetchClinical())
-            // }
+            // console.log(clinicalList);
+            if (clinicalList === null || clinicalList === undefined) {
+                dispatch(fetchClinical())
+            }
 
-            // // console.log(invoicesList);
-            // if (invoicesList === null || invoicesList === undefined) {
-            //     dispatch(fetchInvoices())
-            // }
+            // console.log(invoicesList);
+            if (invoicesList === null || invoicesList === undefined) {
+                dispatch(fetchInvoices())
+            }
 
             // console.log(messages);
             if (messages === null || messages === undefined) {
                 dispatch(fetchMessages())
             }
 
-            // // console.log(shoppingList);
-            // if (shoppingList === null || shoppingList === undefined) {
-            //     dispatch(fetchShopping())
-            // }
+            // console.log(shoppingList);
+            if (shoppingList === null || shoppingList === undefined) {
+                dispatch(fetchShopping())
+            }
         }
 
     }, [authStatus/* , dispatch */])
@@ -113,17 +113,17 @@ const Dispatcher = ({ children, ...others }) => {
         || optionsStatus === 'loading'
         || clientsStatus === 'loading'
         || calendarStatus === 'loading'
-        // || invoicesStatus === 'loading'
-        // || clinicalStatus === 'loading'
+        || invoicesStatus === 'loading'
+        || clinicalStatus === 'loading'
         // CHAT -> CUSTOM
 
     const hasInitialized = usersList != null
         && optionsList !== null
         && clientsList !== null
+        && invoicesList != null
         && eventsList != null
-        // && invoicesList != null
-        // && shoppingList != null
-        // && clinicalList != null
+        && clinicalList != null
+        && shoppingList != null
         && messages != null
 
 

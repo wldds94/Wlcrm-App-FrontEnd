@@ -367,13 +367,8 @@ const EventForm = ({
                                                         setStartDateTouch(true)
                                                     }
                                                     if (!endDateTouch) {
-                                                        // const newEndDate = dayjs(value).add(30, "m").toString() // console.log(newEndDate);
                                                         setFieldValue("endDate", dayjs(value).add(30, "m").format() /* .toString() */, true);
                                                     }
-                                                    // console.log(touched);
-                                                    // console.log(touched["startDate"]);
-                                                    // console.log(touched["endDate"]);
-                                                    // console.log(touched["title"]);
                                                 }} // {(value) => { setFieldValue("startDate", dayjs(value).format(), true); console.log(value); }}
                                             />
                                         </Grid>
@@ -394,7 +389,6 @@ const EventForm = ({
                                                         setEndDateTouch(true)
                                                     }
                                                     if (!endDateTouch) {
-                                                        // const newEndDate = dayjs(value).add(30, "m").toString() // console.log(newEndDate);
                                                         setFieldValue("startDate", dayjs(value).add(-30, "m").format() /* .toString() */, true);
                                                     }
                                                 }} // {(value) => { setFieldValue("startDate", dayjs(value).format(), true); console.log(value); }}
@@ -555,31 +549,13 @@ const EventForm = ({
                                                     handleBlur={handleBlur}
                                                     options={clientsList ? clientsList : []}
                                                     getOptionLabel={option => option?.first_name ? option?.first_name + ' ' + option?.last_name + ' - ' + option?.piva : ""}
-                                                    isOptionEqualToValue={(option, value) => option.id === value.id} // isOptionEqualToValue={(option, value) => value.description === option.description /* option.id === value.id */}
+                                                    isOptionEqualToValue={(option, value) => option.id === value.id} // isOptionEqualToValue={(option, value) => value.description === option.description }
                                                     identifierField="id"
                                                     noOptionsText='Nessun paziente disponibile'
                                                     handleChange={(value) => {
                                                         setFieldValue('clientId', value?.id ? value.id : "");
                                                     }}
                                                 />
-                                                {/* <AutocompleteInput
-                                                id={`event-clientId`}
-                                                name={`clientId`}
-                                                label="Paziente"
-                                                placeholder="Cerca per nome / codice fiscale / P.IVA"
-                                                values={values}
-                                                touched={touched}
-                                                errors={errors}
-                                                handleBlur={handleBlur}
-                                                options={clientsList ? clientsList : []}
-                                                getOptionLabel={option => option?.first_name ? option?.first_name + ' ' + option?.last_name + ' - ' + option?.piva : ""}
-                                                isOptionEqualToValue={(option, value) => option.id === value.id} // isOptionEqualToValue={(option, value) => value.description === option.description }
-                                                identifierField="id"
-                                                noOptionsText='Nessun paziente disponibile'
-                                                handleChange={(value) => {
-                                                    setFieldValue('clientId', value?.id ? value.id : "");
-                                                }}
-                                            /> */}
                                             </> :
                                                 <Stack direction="row" spacing={1} >
                                                     <BasicOutlinedInput

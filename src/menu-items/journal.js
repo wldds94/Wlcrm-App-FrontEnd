@@ -14,10 +14,10 @@ const journal = {
     type: 'group',
     children: [
         {
-            id: '/clinical/list',
+            id: '/clinical',
             title: 'Diario Clinico',
             type: 'item',
-            url: '/clinical/list',
+            url: '/clinical',
             regexURI: /\/clinical/,
             icon: icons.BsJournalBookmarkFill,
             breadcrumbs: false,

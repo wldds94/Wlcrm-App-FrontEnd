@@ -15,17 +15,23 @@ const useCryptoJS = () => {
         const cipherText = AES.encrypt(message, hiddenKey);
         // console.log(cipherText);
         return cipherText.toString();
+
     }, [hiddenKey])
 
     const decryptCallback = useCallback((message) => {
-        let bytes;
+        if (message && message.length > 0) {
+            let bytes;
 
-        try {
-            bytes = AES.decrypt(message, hiddenKey);
-            return bytes.toString(enc.Utf8);
-        } catch (err) {
-            console.log('UNABLE TO DECIPHER', err);
+            try {
+                bytes = AES.decrypt(message, hiddenKey);
+                return bytes.toString(enc.Utf8);
+            } catch (err) {
+                console.log('UNABLE TO DECIPHER', err);
+            }
+        } else {
+            return ""
         }
+
     }, [hiddenKey])
 
     return {

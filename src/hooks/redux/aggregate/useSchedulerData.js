@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 
 // redux
 import { useSelector } from 'react-redux'
@@ -9,9 +9,9 @@ import { getOptionsServices } from 'store/reducers/options';
 
 import useCryptoJS from 'hooks/useCryptoJS';
 
-import useClients from './useClients';
-import useUsers from './useUsers';
-import useEvents from './useEvents';
+import useClients from '../useClients';
+import useUsers from '../useUsers';
+import useEvents from '../useEvents';
 // import useJournalData from './useJournalData';
 
 // utils
@@ -30,11 +30,15 @@ const useSchedulerData = (withMapping = true) => {
 
     const data = useMemo(() => {
         return eventsData?.map((item, index) => {
-            // const defaultItem = withMapping ? { ...mapEventData(item, clients, users, journals, services)} : {...item}
+            const aux = Object.assign({}, item)
+            // aux.journals = journals?.filter(row => Number(row?.eventId) === Number(item?.id))
+            aux.user = users?.find(row => Number(row?.ID) === Number(item?.userId))
+            aux.client = clients?.find(row => Number(row?.id) === Number(item?.clientId))
+            aux.service = services ? services?.find(row => Number(row?.id) === Number(item?.serviceId)) : {}
+            // return aux
             return {
                 ...item,
-                title: cryptoJS.decrypt(item?.title),
-                notes: cryptoJS.decrypt(item?.notes),
+                ...aux,
             }
         })
     }, [eventsData, users, clients, services])

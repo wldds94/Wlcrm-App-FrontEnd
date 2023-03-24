@@ -7,7 +7,7 @@ import ScheduleList from '../common/ScheduleList';
 import { isDeepEqual } from 'utils/equal';
 
 // hooks
-import useSchedulerData from 'hooks/redux/useSchedulerData';
+import useSchedulerData from 'hooks/redux/aggregate/useSchedulerData';
 
 const ScheduleTrashPage = () => {
     console.log('ScheduleTrashPage');

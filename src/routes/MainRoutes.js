@@ -6,13 +6,13 @@ import { lazy } from 'react';
 import Loadable from 'components/loadable/Loadable';
 import AppMain from 'app/main/AppMain';
 
-// // /**
-// //  * DASHBOARD
-// //  */
-// const DashboardRouterPage = Loadable(lazy(() => import('pages/dashboard/DashboardRouterPage')));
-// /**
-//  * CALENDAR
-//  */
+/**
+ * DASHBOARD
+ */
+const DashboardRouterPage = Loadable(lazy(() => import('pages/dashboard/DashboardRouterPage')));
+/**
+ * CALENDAR
+ */
 const ScheduleRouterPage = Loadable(lazy(() => import('pages/calendar/ScheduleRouterPage')));
 const ScheduleListPage = Loadable(lazy(() => import('pages/calendar/panel/list/ScheduleListPage')));
 const ScheduleTrashPage = Loadable(lazy(() => import('pages/calendar/panel/trash/ScheduleTrashPage')));
@@ -28,28 +28,28 @@ const ClientsListPage = Loadable(lazy(() => import('pages/clients/list/ClientsLi
 const ClientsTrashPage = Loadable(lazy(() => import('pages/clients/trash/ClientsTrashPage')));
 const ClientsCreatePage = Loadable(lazy(() => import('pages/clients/create/ClientsCreatePage')));
 // // - PROFILE
-// const ClientsProfileRouterPage = Loadable(lazy(() => import('pages/clients/profile/ClientsProfileRouterPage')));
+const ClientsProfileRouterPage = Loadable(lazy(() => import('pages/clients/profile/ClientsProfileRouterPage')));
 // const ClientsDashboardPage = Loadable(lazy(() => import('pages/clients/profile/dashboard/ClientsDashboardPage')));
-// const ClientsProfilePage = Loadable(lazy(() => import('pages/clients/profile/anagrafica/ClientsProfilePage')));
-// const ClientsProfileAppointmentsPage = Loadable(lazy(() => import('pages/clients/profile/appointments/ClientsProfileAppointmentsPage')));
-// const ClientsProfileJournalPage = Loadable(lazy(() => import('pages/clients/profile/journal/ClientsProfileJournalPage')));
+const ClientsProfilePage = Loadable(lazy(() => import('pages/clients/profile/anagrafica/ClientsProfilePage')));
+const ClientsProfileJournalPage = Loadable(lazy(() => import('pages/clients/profile/journal/ClientsProfileJournalPage')));
+const ClientsProfileAppointmentsPage = Loadable(lazy(() => import('pages/clients/profile/appointments/ClientsProfileAppointmentsPage')));
 // // --- PROFILE INVOICE
-// const ClientsProfileInvoicesRouterPage = Loadable(lazy(() => import('pages/clients/profile/invoices/ClientsProfileInvoicesRouterPage')));
-// const ClientsProfileInvoicesPage = Loadable(lazy(() => import('pages/clients/profile/invoices/list/ClientsProfileInvoicesPage')));
+const ClientsProfileInvoicesPage = Loadable(lazy(() => import('pages/clients/profile/invoices/list/ClientsProfileInvoicesPage')));
+const ClientsProfileInvoicesRouterPage = Loadable(lazy(() => import('pages/clients/profile/invoices/ClientsProfileInvoicesRouterPage')));
 // const ClientsProfileInvoicesEditPage = Loadable(lazy(() => import('pages/clients/profile/invoices/edit/ClientsProfileInvoicesEditPage')));
-// const ClientsProfileInvoicesPreviewPage = Loadable(lazy(() => import('pages/clients/profile/invoices/preview/ClientsProfileInvoicesPreviewPage')));
-// /**
-//  * INVOICES
-//  */
-// const InvoicesRouterPage = Loadable(lazy(() => import('pages/invoices/InvoicesRouterPage')));
-// const InvoicesListPage = Loadable(lazy(() => import('pages/invoices/list/InvoicesListPage')));
-// const InvoicesCreatePage = Loadable(lazy(() => import('pages/invoices/create/InvoicesCreatePage')));
+const ClientsProfileInvoicesPreviewPage = Loadable(lazy(() => import('pages/clients/profile/invoices/preview/ClientsProfileInvoicesPreviewPage')));
+/**
+ * INVOICES
+ */
+const InvoicesRouterPage = Loadable(lazy(() => import('pages/invoices/InvoicesRouterPage')));
+const InvoicesListPage = Loadable(lazy(() => import('pages/invoices/list/InvoicesListPage')));
+const InvoicesCreatePage = Loadable(lazy(() => import('pages/invoices/create/InvoicesCreatePage')));
 // const InvoicesEditPage = Loadable(lazy(() => import('pages/invoices/create/InvoicesEditPage')));
 // /**
 //  * JOURNAL
 //  */
-// const ClinicalJournalRouterPage = Loadable(lazy(() => import('pages/journal/ClinicalJournalRouterPage')));
-// const ClinicalJournalPage = Loadable(lazy(() => import('pages/journal/list/ClinicalJournalPage')));
+const ClinicalJournalRouterPage = Loadable(lazy(() => import('pages/journal/ClinicalJournalRouterPage')));
+const ClinicalJournalPage = Loadable(lazy(() => import('pages/journal/list/ClinicalJournalPage')));
 /**
  * COMPANY
  */
@@ -70,9 +70,9 @@ const AccountPrivacyPage = Loadable(lazy(() => import('pages/account/privacy/Acc
 //  * Management - MANAGEMENT
 //  * STATS
 //  */
-// const StatsRouterPage = Loadable(lazy(() => import('pages/management/StatsRouterPage')));
+const StatsRouterPage = Loadable(lazy(() => import('pages/management/StatsRouterPage')));
 // const ManagementDashboardPage = Loadable(lazy(() => import('pages/management/dashboard/ManagementDashboardPage')));
-// const StatsInvoicesPage = Loadable(lazy(() => import('pages/management/invoice/StatsInvoicesPage')));
+const StatsInvoicesPage = Loadable(lazy(() => import('pages/management/invoice/StatsInvoicesPage')));
 // const StatsClientsPage = Loadable(lazy(() => import('pages/management/clients/StatsClientsPage')));
 // const StatsEventsPage = Loadable(lazy(() => import('pages/management/events/StatsEventsPage')));
 // // const StatsServicesPage = Loadable(lazy(() => import('pages/management/services/StatsServicesPage')));
@@ -87,14 +87,14 @@ const MainRoutes = {
     path: '/',
     element: <AppMain />,
     children: [
-    //     {
-    //         path: '/',
-    //         element: <DashboardRouterPage />
-    //     },
-    //     {
-    //         path: '/dashboard',
-    //         element: <DashboardRouterPage />
-    //     },
+        {
+            path: '/',
+            element: <DashboardRouterPage />
+        },
+        {
+            path: '/dashboard',
+            element: <DashboardRouterPage />
+        },
         // SCHEDULE
         {
             path: '/schedule',
@@ -134,92 +134,84 @@ const MainRoutes = {
                 },
             ]
         },
-    //     {
-    //         path: '/clients/profile/:clientsChiperID',
-    //         element: <ClientsProfileRouterPage />,
-    //         children: [
-    //             {
-    //                 path: '',
-    //                 element: <ClientsDashboardPage />
-    //             },
-    //             {
-    //                 path: 'view', // anagrafica',
-    //                 element: <ClientsProfilePage />,
-    //             },
-    //             // {
-    //             //     path: 'edit', // anagrafica',
-    //             //     element: <ClientsProfilePage />
-    //             // },
-    //             {
-    //                 path: 'journal', // anagrafica',
-    //                 element: <ClientsProfileJournalPage />
-    //             },
-    //             {
-    //                 path: 'appointment', // anagrafica',
-    //                 element: <ClientsProfileAppointmentsPage />
-    //             },
-    //             {
-    //                 path: 'fatture', // anagrafica',
-    //                 element: <ClientsProfileInvoicesPage />,
-    //             },
-    //             {
-    //                 path: 'fatture/:invoicesChiperID', // anagrafica',
-    //                 element: <ClientsProfileInvoicesRouterPage />,
-    //                 children: [
-    //                     {
-    //                         path: 'preview', // anagrafica',
-    //                         element: <ClientsProfileInvoicesPreviewPage />
-    //                     },
-    //                     {
-    //                         path: 'edit', // anagrafica',
-    //                         element: <ClientsProfileInvoicesEditPage />
-    //                     },
-    //                 ]
-    //             },
-    //         ]
-    //     },
-    //     // INVOICES
-    //     {
-    //         path: 'invoices',
-    //         element: <InvoicesRouterPage />,
-    //         children: [
-    //             {
-    //                 path: 'list', // anagrafica',
-    //                 element: <InvoicesListPage />
-    //             },
-    //             {
-    //                 path: 'create', // anagrafica',
-    //                 element: <InvoicesCreatePage />
-    //             },
-    //             {
-    //                 path: 'create/:invoicesChiperID', // anagrafica',
-    //                 element: <InvoicesEditPage />
-    //             },
-    //             // {
-    //             //     path: 'edit/:chiperID', // anagrafica',
-    //             //     element: <InvoicesCreatePage />
-    //             // },
-    //             // {
-    //             //     path: 'trash', // anagrafica',
-    //             //     element: <ClientsTrashPage />
-    //             // },
-    //         ]
-    //     },
-    //     // JOURNAL / CLINICAL
-    //     {
-    //         path: 'clinical',
-    //         element: <ClinicalJournalRouterPage />,
-    //         children: [
-    //             {
-    //                 path: '', // anagrafica',
-    //                 element: <ClinicalJournalPage />
-    //             },
-    //             {
-    //                 path: 'list', // anagrafica',
-    //                 element: <ClinicalJournalPage />
-    //             },
-    //         ]
-    //     },
+        {
+            path: '/clients/profile/:clientsChiperID',
+            element: <ClientsProfileRouterPage />,
+            children: [
+                // {
+                //     path: '',
+                //     element: <ClientsDashboardPage />
+                // },
+                {
+                    path: 'view', 
+                    element: <ClientsProfilePage />,
+                },
+                {
+                    path: 'appointment', 
+                    element: <ClientsProfileAppointmentsPage />
+                },
+                {
+                    path: 'journal', 
+                    element: <ClientsProfileJournalPage />
+                },
+                {
+                    path: 'fatture', 
+                    element: <ClientsProfileInvoicesPage />,
+                },
+                {
+                    path: 'fatture/:invoicesChiperID', 
+                    element: <ClientsProfileInvoicesRouterPage />,
+                    children: [
+                        {
+                            path: 'preview', 
+                            element: <ClientsProfileInvoicesPreviewPage />
+                        },
+                        // {
+                        //     path: 'edit', 
+                        //     element: <ClientsProfileInvoicesEditPage />
+                        // },
+                    ]
+                },
+            ]
+        },
+        // INVOICES
+        {
+            path: 'invoices',
+            element: <InvoicesRouterPage />,
+            children: [
+                {
+                    path: '', 
+                    element: <InvoicesListPage />
+                },
+                {
+                    path: 'create', 
+                    element: <InvoicesCreatePage />
+                },
+                // {
+                //     path: 'create/:invoicesChiperID', 
+                //     element: <InvoicesEditPage />
+                // },
+                // // {
+                // //     path: 'edit/:chiperID', 
+                // //     element: <InvoicesCreatePage />
+                // // },
+                // // {
+                // //     path: 'trash', 
+                // //     element: <ClientsTrashPage />
+                // // },
+            ]
+        },
+        // JOURNAL / CLINICAL
+        {
+            path: 'clinical',
+            element: <ClinicalJournalRouterPage />,
+            children: [
+                {
+                    path: '', // anagrafica',
+                    element: <ClinicalJournalPage />
+                },
+            ]
+        },
         // COMPANY
         {
             path: 'company',
@@ -229,10 +221,6 @@ const MainRoutes = {
                     path: '', // anagrafica',
                     element: <CompanyProfilePage />
                 },
-                // {
-                //     path: 'profile', // anagrafica',
-                //     element: <CompanyProfilePage />
-                // },
                 {
                     path: 'banks', // anagrafica',
                     element: <CompanyBanksPage />
@@ -270,33 +258,33 @@ const MainRoutes = {
                 },
             ],
         },
-    //     // STATS
-    //     {
-    //         path: '/management',
-    //         element: <StatsRouterPage />,
-    //         children: [
-    //             {
-    //                 path: '', 
-    //                 element: <ManagementDashboardPage />
-    //             },
-    //             {
-    //                 path: 'invoices', 
-    //                 element: <StatsInvoicesPage />
-    //             },
-    //             {
-    //                 path: 'clients', 
-    //                 element: <StatsClientsPage />
-    //             },
-    //             {
-    //                 path: 'events',
-    //                 element: <StatsEventsPage />
-    //             },
-    //             // {
-    //             //     path: 'services', 
-    //             //     element: <StatsServicesPage />
-    //             // },
-    //         ]
-    //     },
+        // STATS
+        {
+            path: '/management',
+            element: <StatsRouterPage />,
+            children: [
+                // {
+                //     path: '', 
+                //     element: <ManagementDashboardPage />
+                // },
+                {
+                    path: 'invoices', 
+                    element: <StatsInvoicesPage />
+                },
+                // {
+                //     path: 'clients', 
+                //     element: <StatsClientsPage />
+                // },
+                // {
+                //     path: 'events',
+                //     element: <StatsEventsPage />
+                // },
+                // // {
+                // //     path: 'services', 
+                // //     element: <StatsServicesPage />
+                // // },
+            ]
+        },
         // SETTINGS
         {
             path: 'settings',
@@ -306,10 +294,6 @@ const MainRoutes = {
                     path: '', // anagrafica',
                     element: <SettingsGeneralPage />
                 },
-                /* {
-                    path: 'invoice', // anagrafica',
-                    element: <SettingsInvoicePage />,
-                } */
             ]
         },
     //     //     // AUTH
@@ -322,255 +306,3 @@ const MainRoutes = {
 };
 
 export default MainRoutes;
-
-/**
-const MainRoutes = {
-    path: '/',
-    element: <AppMain />,
-    children: [
-        {
-            path: "",
-            element: <ScrollTop />,
-            children: [
-                {
-                    path: '/',
-                    element: <DashboardRouterPage />
-                },
-                {
-                    path: '/dashboard',
-                    element: <DashboardRouterPage />
-                },
-                // SCHEDULE
-                {
-                    path: '/schedule',
-                    element: <ScheduleRouterPage />,
-                    children: [
-                        {
-                            path: '', // anagrafica',
-                            element: <ScheduleListPage />
-                        },
-                        {
-                            path: 'trash', // anagrafica',
-                            element: <ScheduleTrashPage />
-                        },
-                    ]
-                },
-                // CHAT
-                {
-                    path: '/chat/channel/:channelID',
-                    element: <ChatRouterPage />,
-                    // children: [
-                    //     {
-                    //         path: '',
-                    //         element: <ChatChannelPage />
-                    //     },
-                    // ]
-                },
-                // CLIENT
-                {
-                    path: '/clients',
-                    element: <ClientsRouterPage />,
-                    children: [
-                        {
-                            path: 'view', // anagrafica',
-                            element: <ClientsListPage />
-                        },
-                        {
-                            path: 'trash', // anagrafica',
-                            element: <ClientsTrashPage />
-                        },
-                        {
-                            path: 'create', // anagrafica',
-                            element: <ClientsCreatePage />
-                        },
-                    ]
-                },
-                {
-                    path: '/clients/profile/:clientsChiperID',
-                    element: <ClientsProfileRouterPage />,
-                    children: [
-                        {
-                            path: '',
-                            element: <ClientsDashboardPage />
-                        },
-                        {
-                            path: 'view', // anagrafica',
-                            element: <ClientsProfilePage />,
-                        },
-                        // {
-                        //     path: 'edit', // anagrafica',
-                        //     element: <ClientsProfilePage />
-                        // },
-                        {
-                            path: 'journal', // anagrafica',
-                            element: <ClientsProfileJournalPage />
-                        },
-                        {
-                            path: 'appointment', // anagrafica',
-                            element: <ClientsProfileAppointmentsPage />
-                        },
-                        {
-                            path: 'fatture', // anagrafica',
-                            element: <ClientsProfileInvoicesPage />,
-                        },
-                        {
-                            path: 'fatture/:invoicesChiperID', // anagrafica',
-                            element: <ClientsProfileInvoicesRouterPage />,
-                            children: [
-                                {
-                                    path: 'preview', // anagrafica',
-                                    element: <ClientsProfileInvoicesPreviewPage />
-                                },
-                                {
-                                    path: 'edit', // anagrafica',
-                                    element: <ClientsProfileInvoicesEditPage />
-                                },
-                            ]
-                        },
-                    ]
-                },
-                // INVOICES
-                {
-                    path: 'invoices',
-                    element: <InvoicesRouterPage />,
-                    children: [
-                        {
-                            path: 'list', // anagrafica',
-                            element: <InvoicesListPage />
-                        },
-                        {
-                            path: 'create', // anagrafica',
-                            element: <InvoicesCreatePage />
-                        },
-                        {
-                            path: 'create/:invoicesChiperID', // anagrafica',
-                            element: <InvoicesEditPage />
-                        },
-                        // {
-                        //     path: 'edit/:chiperID', // anagrafica',
-                        //     element: <InvoicesCreatePage />
-                        // },
-                        // {
-                        //     path: 'trash', // anagrafica',
-                        //     element: <ClientsTrashPage />
-                        // },
-                    ]
-                },
-                // JOURNAL / CLINICAL
-                {
-                    path: 'clinical',
-                    element: <ClinicalJournalRouterPage />,
-                    children: [
-                        {
-                            path: '', // anagrafica',
-                            element: <ClinicalJournalPage />
-                        },
-                        {
-                            path: 'list', // anagrafica',
-                            element: <ClinicalJournalPage />
-                        },
-                    ]
-                },
-                // COMPANY
-                {
-                    path: 'company',
-                    element: <CompanyRouterPage />,
-                    children: [
-                        {
-                            path: '', // anagrafica',
-                            element: <CompanyProfilePage />
-                        },
-                        {
-                            path: 'profile', // anagrafica',
-                            element: <CompanyProfilePage />
-                        },
-                        {
-                            path: 'banks', // anagrafica',
-                            element: <CompanyBanksPage />
-                        },
-                        {
-                            path: 'iva', // anagrafica',
-                            element: <CompanyIvaPage />
-                        },
-                        {
-                            path: 'services', // anagrafica',
-                            element: <CompanyServicesPage />
-                        },
-                    ]
-                },
-                // ACCOUNT
-                {
-                    path: 'account',
-                    element: <AccountRouterPage />,
-                    children: [
-                        {
-                            path: '', // anagrafica',
-                            element: <AccountDashboardPage />
-                        },
-                        {
-                            path: 'profile', // anagrafica',
-                            element: <AccountProfilePage />
-                        },
-                        // {
-                        //     path: 'activities', // anagrafica',
-                        //     element: <AccountActivitiesPage />
-                        // },
-                        {
-                            path: 'privacy', // anagrafica',
-                            element: <AccountPrivacyPage />
-                        },
-                    ],
-                },
-                // STATS
-                {
-                    path: '/management',
-                    element: <StatsRouterPage />,
-                    children: [
-                        {
-                            path: '', // anagrafica',
-                            element: <ManagementDashboardPage />
-                        },
-                        {
-                            path: 'invoices', // anagrafica',
-                            element: <StatsInvoicesPage />
-                        },
-                        {
-                            path: 'clients', // anagrafica',
-                            element: <StatsClientsPage />
-                        },
-                        {
-                            path: 'events', // anagrafica',
-                            element: <StatsEventsPage />
-                        },
-                        // {
-                        //     path: 'services', // anagrafica',
-                        //     element: <StatsServicesPage />
-                        // },
-                    ]
-                },
-                // SETTINGS
-                {
-                    path: 'settings',
-                    element: <SettingsRouterPage />,
-                    children: [
-                        {
-                            path: '', // anagrafica',
-                            element: <SettingsGeneralPage />
-                        },
-                        {
-                            path: 'general', // anagrafica',
-                            element: <SettingsGeneralPage />
-                        },
-                    ]
-                },
-                //     // AUTH
-                //     {
-                //         path: 'logout',
-                //         element: <LogOut />
-                //     },
-
-            ]
-        }
-    ]
-};
- */
