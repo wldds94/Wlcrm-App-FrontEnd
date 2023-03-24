@@ -9,12 +9,12 @@ export const getSummary = (
     categories = [], 
     getUnique = (data, columnParallal) => {return []},
     transformValueToCompare = (value) => {return value},
-    getPositionByPeriod = () => {return -1}
+    getPositionByPeriod = () => {return -1},
+    transformValueToPush = (value) => {return value},
 ) => {
     let res = []
     const unique = getUnique(data, columnParallal)
-    console.log(data);
-    console.log(unique);
+    // console.log(data); // console.log(unique);
     for (let i = 0; i < unique.length; i++) {
         const parallelData = data?.filter((item) => 
             fieldDate !== false && String(transformValueToCompare(item[fieldDate])) === String(unique[i]))
@@ -31,7 +31,7 @@ export const getSummary = (
             name: unique[i],
             data: resData
         }
-        res.push(aux)
+        res.push(transformValueToPush(aux))
     }
 
     return res
@@ -39,6 +39,10 @@ export const getSummary = (
 
 export const getYearsCategories = (data, columnParallal) => {
     return getYears(2)
+}
+
+export const getCurrentYearsCategories = (data, columnParallal) => {
+    return getYears(0)
 }
 
 export const getDateInYear = (value) => {

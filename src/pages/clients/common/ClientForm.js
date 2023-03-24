@@ -384,270 +384,230 @@ const ClientForm = ({ formData = null, editable = true, ...others }) => {
                                             </Typography>
                                             {/* <Grid container spacing={3} >
                                                 <Grid item xs={4} sm={3} >
+                                                    
+                                                </Grid>
+                                                <Grid item xs={8} sm={9}>
+
+                                               
+                                                </Grid>
+                                    </Grid> */}
+
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}/*  sx={{ mt: 1, mb: 2 }} */>
+
+                                            <BasicOutlinedInput
+                                                id="email-client"
+                                                name="email"
+                                                label="Email"
+                                                placeholder="mariorossi@gmail.com"
+                                                inputValue={values.email}
+                                                values={values}
+                                                touched={touched}
+                                                errors={errors}
+                                                handleBlur={handleBlur}
+                                                handleChange={handleChange}
+                                                readOnly={!isEditabled}
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}/*  sx={{ mt: 1, mb: 2 }} */>
+
+                                            <BasicOutlinedInput
+                                                id="pec-client"
+                                                name="pec"
+                                                label="Pec"
+                                                placeholder=""
+                                                inputValue={values.pec}
+                                                values={values}
+                                                touched={touched}
+                                                errors={errors}
+                                                handleBlur={handleBlur}
+                                                handleChange={handleChange}
+                                                readOnly={!isEditabled}
+                                            />
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                                {/* ADDRESS INFORMATION */}
+                                <Grid item xs={12} sx={{ mb: 2 }} >
+                                    <Grid container spacing={3} >
+                                        <Grid item xs={12} sx={{ paddingBottom: '.5rem'/* , mb: 1  */ }}>
+                                            <Typography variant="h6b">Indirizzo</Typography>
+                                            <Divider variant="middle" />
+                                        </Grid>
+                                        <Grid item xs={12} sm={9}/*  sx={{ mt: 1, mb: 2 }} */>
+
+                                            <BasicOutlinedInput
+                                                id="address-client"
+                                                name="address"
+                                                label="Indirizzo *"
+                                                placeholder="Via caterina rossi 2/3"
+                                                inputValue={values.address}
+                                                values={values}
+                                                touched={touched}
+                                                errors={errors}
+                                                handleBlur={handleBlur}
+                                                handleChange={handleChange}
+                                                readOnly={!isEditabled}
+                                            />
+                                        </Grid>
+                                        <Grid item xs={4} sm={3}/*  sx={{ mt: 1, mb: 2 }} */>
+
+                                            <BasicOutlinedInput
+                                                id="zip_code-client"
+                                                name="zip_code"
+                                                label="CAP *"
+                                                placeholder="16151"
+                                                inputValue={values.zip_code}
+                                                values={values}
+                                                touched={touched}
+                                                errors={errors}
+                                                handleBlur={handleBlur}
+                                                handleChange={handleChange}
+                                                readOnly={!isEditabled}
+                                            />
+                                        </Grid>
+                                        <Grid item xs={8} sm={4}/*  sx={{ mt: 1, mb: 2 }} */>
+
+                                            <BasicOutlinedInput
+                                                id="province-client"
+                                                name="province"
+                                                label="Provincia *"
+                                                placeholder="Genova"
+                                                inputValue={values.province}
+                                                values={values}
+                                                touched={touched}
+                                                errors={errors}
+                                                handleBlur={handleBlur}
+                                                handleChange={handleChange}
+                                                readOnly={!isEditabled}
+                                            />
+                                        </Grid>
+                                        <Grid item xs={6} sm={4}/*  sx={{ mt: 1, mb: 2 }} */>
+
+                                            <BasicOutlinedInput
+                                                id="region-client"
+                                                name="region"
+                                                label="Regione *"
+                                                placeholder="Liguria"
+                                                inputValue={values.region}
+                                                values={values}
+                                                touched={touched}
+                                                errors={errors}
+                                                handleBlur={handleBlur}
+                                                handleChange={handleChange}
+                                                readOnly={!isEditabled}
+                                            />
+                                        </Grid>
+                                        <Grid item xs={6} sm={4}/*  sx={{ mt: 1, mb: 2 }} */>
+
+                                            <BasicOutlinedInput
+                                                id="state-client"
+                                                name="state"
+                                                label="Nazione *"
+                                                placeholder="Italia"
+                                                inputValue={values.state}
+                                                values={values}
+                                                touched={touched}
+                                                errors={errors}
+                                                handleBlur={handleBlur}
+                                                handleChange={handleChange}
+                                                readOnly={!isEditabled}
+                                            />
+                                        </Grid>
+
+                                    </Grid>
+                                </Grid>
+
+                                {/* PROFILO FISCALE */}
+                                <Grid item xs={12} sx={{ mb: 2 }} >
+                                    <Grid container spacing={3} >
+                                        <Grid item xs={12} sx={{ paddingBottom: '.5rem'/* , mb: 1  */ }}>
+                                            <Typography variant="h6b">Profilo Fiscale</Typography>
+                                            <Divider variant="middle" />
+                                        </Grid>
+                                        {/** TYPE */}
+                                        <Grid item xs={12} sm={6} >
+                                            <BasicSelect
+                                                id="type-client"
+                                                name="type"
+                                                label="Tipo Paziente"
+                                                inputValue={values.type}
+                                                values={values}
+                                                touched={touched}
+                                                errors={errors}
+                                                options={clientsTypes}
+                                                handleBlur={handleBlur}
+                                                handleChange={handleChange}
+                                                readOnly={!isEditabled}
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12} sm={6} >
+
+                                            <BasicOutlinedInput
+                                                id="birth_province"
+                                                name="birth_province"
+                                                label="Provincia di Nascita"
+                                                placeholder="Genova"
+                                                inputValue={values.birth_province}
+                                                values={values}
+                                                touched={touched}
+                                                errors={errors}
+                                                handleBlur={handleBlur}
+                                                handleChange={handleChange}
+                                                readOnly={!isEditabled}
+                                            />
+                                        </Grid>
+                                        {/** PIVA */}
+                                        <Grid item xs={12} >
+                                            <Grid container spacing={1} >
+                                                <Grid item xs={10} >
                                                     <BasicOutlinedInput
-                                                        id="telephonePrefix-client"
-                                                        name="telephonePrefix"
-                                                        label="Prefisso"
-                                                        placeholder="3475624897"
-                                                        // inputValue={values.telephone}
-                                                        inputValue={values.telephonePrefix}
+                                                        id="piva-client"
+                                                        name="piva"
+                                                        label="Codice Fiscale / P. IVA *"
+                                                        placeholder="MRIRSS54A12D969R"
+                                                        inputValue={values.piva}
                                                         values={values}
                                                         touched={touched}
                                                         errors={errors}
                                                         handleBlur={handleBlur}
-                                                        handleChange={(e) => {
-                                                            // mergeTelephone(.value)
-                                                            const { value } = e.currentTarget
-                                                            const newTel = getMergedTelephone(value, 'telephonePrefix')
-                                                            setFieldValue('telephonePrefix', value)
-                                                            setFieldValue('telephone', newTel)
-                                                            // handleChange(e)
-                                                        }}
+                                                        handleChange={handleChange}
                                                         readOnly={!isEditabled}
                                                     />
                                                 </Grid>
-                                                <Grid item xs={8} sm={9}>
-
-                                                <BasicOutlinedInput
-                                                    id="telephoneBody-client"
-                                                    name="telephoneBody"
-                                                    label="Telefono"
-                                                    placeholder="3475624897"
-                                                    // inputValue={values.telephone}
-                                                    inputValue={values.telephoneBody}
-                                                    values={values}
-                                                    touched={touched}
-                                                    errors={errors}
-                                                    handleBlur={handleBlur}
-                                                    handleChange={(e) => {
-                                                        // mergeTelephone(.value)
-                                                        const { value } = e.currentTarget
-                                                        const newTel = getMergedTelephone(value, 'telephoneBody')
-                                                        setFieldValue('telephoneBody', value)
-                                                        setFieldValue('telephone', newTel)
-                                                        // handleChange(e)
-                                                    }}
-                                                    readOnly={!isEditabled}
-                                                />
+                                                <Grid item xs={2}>
+                                                    <IconButton variant="contained" color="primary"
+                                                        onClick={() => checkCodFisc(values, setFieldValue)}
+                                                    >
+                                                        <MdOutlineCalculate />
+                                                    </IconButton>
                                                 </Grid>
-                                    </Grid> */}
+                                            </Grid>
 
-                                </Grid>
-                                <Grid item xs={12} sm={6}/*  sx={{ mt: 1, mb: 2 }} */>
+                                        </Grid>
 
-                                    <BasicOutlinedInput
-                                        id="email-client"
-                                        name="email"
-                                        label="Email"
-                                        placeholder="mariorossi@gmail.com"
-                                        inputValue={values.email}
-                                        values={values}
-                                        touched={touched}
-                                        errors={errors}
-                                        handleBlur={handleBlur}
-                                        handleChange={handleChange}
-                                        readOnly={!isEditabled}
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={6}/*  sx={{ mt: 1, mb: 2 }} */>
-
-                                    <BasicOutlinedInput
-                                        id="pec-client"
-                                        name="pec"
-                                        label="Pec"
-                                        placeholder=""
-                                        inputValue={values.pec}
-                                        values={values}
-                                        touched={touched}
-                                        errors={errors}
-                                        handleBlur={handleBlur}
-                                        handleChange={handleChange}
-                                        readOnly={!isEditabled}
-                                    />
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                                {/* ADDRESS INFORMATION */}
-                    <Grid item xs={12} sx={{ mb: 2 }} >
-                        <Grid container spacing={3} >
-                            <Grid item xs={12} sx={{ paddingBottom: '.5rem'/* , mb: 1  */ }}>
-                                <Typography variant="h6b">Indirizzo</Typography>
-                                <Divider variant="middle" />
-                            </Grid>
-                            <Grid item xs={12} sm={9}/*  sx={{ mt: 1, mb: 2 }} */>
-
-                                <BasicOutlinedInput
-                                    id="address-client"
-                                    name="address"
-                                    label="Indirizzo *"
-                                    placeholder="Via caterina rossi 2/3"
-                                    inputValue={values.address}
-                                    values={values}
-                                    touched={touched}
-                                    errors={errors}
-                                    handleBlur={handleBlur}
-                                    handleChange={handleChange}
-                                    readOnly={!isEditabled}
-                                />
-                            </Grid>
-                            <Grid item xs={4} sm={3}/*  sx={{ mt: 1, mb: 2 }} */>
-
-                                <BasicOutlinedInput
-                                    id="zip_code-client"
-                                    name="zip_code"
-                                    label="CAP *"
-                                    placeholder="16151"
-                                    inputValue={values.zip_code}
-                                    values={values}
-                                    touched={touched}
-                                    errors={errors}
-                                    handleBlur={handleBlur}
-                                    handleChange={handleChange}
-                                    readOnly={!isEditabled}
-                                />
-                            </Grid>
-                            <Grid item xs={8} sm={4}/*  sx={{ mt: 1, mb: 2 }} */>
-
-                                <BasicOutlinedInput
-                                    id="province-client"
-                                    name="province"
-                                    label="Provincia *"
-                                    placeholder="Genova"
-                                    inputValue={values.province}
-                                    values={values}
-                                    touched={touched}
-                                    errors={errors}
-                                    handleBlur={handleBlur}
-                                    handleChange={handleChange}
-                                    readOnly={!isEditabled}
-                                />
-                            </Grid>
-                            <Grid item xs={6} sm={4}/*  sx={{ mt: 1, mb: 2 }} */>
-
-                                <BasicOutlinedInput
-                                    id="region-client"
-                                    name="region"
-                                    label="Regione *"
-                                    placeholder="Liguria"
-                                    inputValue={values.region}
-                                    values={values}
-                                    touched={touched}
-                                    errors={errors}
-                                    handleBlur={handleBlur}
-                                    handleChange={handleChange}
-                                    readOnly={!isEditabled}
-                                />
-                            </Grid>
-                            <Grid item xs={6} sm={4}/*  sx={{ mt: 1, mb: 2 }} */>
-
-                                <BasicOutlinedInput
-                                    id="state-client"
-                                    name="state"
-                                    label="Nazione *"
-                                    placeholder="Italia"
-                                    inputValue={values.state}
-                                    values={values}
-                                    touched={touched}
-                                    errors={errors}
-                                    handleBlur={handleBlur}
-                                    handleChange={handleChange}
-                                    readOnly={!isEditabled}
-                                />
-                            </Grid>
-
-                        </Grid>
-                    </Grid>
-
-                    {/* PROFILO FISCALE */}
-                    <Grid item xs={12} sx={{ mb: 2 }} >
-                        <Grid container spacing={3} >
-                            <Grid item xs={12} sx={{ paddingBottom: '.5rem'/* , mb: 1  */ }}>
-                                <Typography variant="h6b">Profilo Fiscale</Typography>
-                                <Divider variant="middle" />
-                            </Grid>
-                            {/** TYPE */}
-                            <Grid item xs={12} sm={6} >
-                                <BasicSelect
-                                    id="type-client"
-                                    name="type"
-                                    label="Tipo Paziente"
-                                    inputValue={values.type}
-                                    values={values}
-                                    touched={touched}
-                                    errors={errors}
-                                    options={clientsTypes}
-                                    handleBlur={handleBlur}
-                                    handleChange={handleChange}
-                                    readOnly={!isEditabled}
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6} >
-
-                                <BasicOutlinedInput
-                                    id="birth_province"
-                                    name="birth_province"
-                                    label="Provincia di Nascita"
-                                    placeholder="Genova"
-                                    inputValue={values.birth_province}
-                                    values={values}
-                                    touched={touched}
-                                    errors={errors}
-                                    handleBlur={handleBlur}
-                                    handleChange={handleChange}
-                                    readOnly={!isEditabled}
-                                />
-                            </Grid>
-                            {/** PIVA */}
-                            <Grid item xs={12} >
-                                <Grid container spacing={1} >
-                                    <Grid item xs={10} >
-                                        <BasicOutlinedInput
-                                            id="piva-client"
-                                            name="piva"
-                                            label="Codice Fiscale / P. IVA *"
-                                            placeholder="MRIRSS54A12D969R"
-                                            inputValue={values.piva}
-                                            values={values}
-                                            touched={touched}
-                                            errors={errors}
-                                            handleBlur={handleBlur}
-                                            handleChange={handleChange}
-                                            readOnly={!isEditabled}
-                                        />
-                                    </Grid>
-                                    <Grid item xs={2}>
-                                        <IconButton variant="contained" color="primary"
-                                            onClick={() => checkCodFisc(values, setFieldValue)}
-                                        >
-                                            <MdOutlineCalculate />
-                                        </IconButton>
                                     </Grid>
                                 </Grid>
 
+                                {errors.submit && (
+                                    <Grid item xs={12}>
+                                        <FormHelperText error>{errors.submit}</FormHelperText>
+                                    </Grid>
+                                )}
+                                <Grid item xs={12}>
+
+                                    {isEditabled &&
+                                        <SaveButton
+                                            isSubmitting={isSubmitting} /* setSubmitting={setSubmitting} */
+                                            onSubmit={handleSubmit}
+                                        />}
+                                </Grid>
                             </Grid>
-
-                        </Grid>
-                    </Grid>
-
-                    {errors.submit && (
-                        <Grid item xs={12}>
-                            <FormHelperText error>{errors.submit}</FormHelperText>
-                        </Grid>
+                        </form>
                     )}
-                    <Grid item xs={12}>
-
-                        {isEditabled &&
-                            <SaveButton
-                                isSubmitting={isSubmitting} /* setSubmitting={setSubmitting} */
-                                onSubmit={handleSubmit}
-                            />}
-                    </Grid>
-                </Grid>
-            </form>
-                    )}
-        </Formik>
+                </Formik>
             </Box >
-    {/* </MainCard> */ }
+            {/* </MainCard> */}
         </>
     )
 }

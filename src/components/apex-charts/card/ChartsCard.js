@@ -55,6 +55,7 @@ const ChartsCard = ({
     fieldDate = false,
     transformValueToCompare = (value) => {return value},
     getPositionByPeriod = (period, value) => { return -1},
+    transformValueToPush = (value) => {return value},
     // Charts Type
     defaultType = "area",
     types = ['area', 'bar', 'line', 'scatter'],
@@ -139,7 +140,7 @@ const ChartsCard = ({
         () => memoryCategoriesCallback(currentData, typeSeries),
         [currentData, typeSeries]
     )
-    console.log(categoriesMemo);
+    // console.log(categoriesMemo);
 
     const seriesMemo = useMemo(
         () => memoryDataCallback(
@@ -152,10 +153,22 @@ const ChartsCard = ({
             getUnique,
             transformValueToCompare,
             getPositionByPeriod,
+            transformValueToPush,
         ),
         [currentData, typeSeries, categoriesMemo]
     )
     console.log(seriesMemo);
+
+    const titleMemo = useMemo(() => {
+        if (chartsTitle !== false) {
+            return chartsTitle
+        } else if ('function' === typeof chartsTitlePreparation) {
+            return chartsTitlePreparation(seriesMemo[0]?.data)
+        }
+        return undefined
+    },
+        [seriesMemo, categoriesMemo]
+    )
 
     return (
         <>
@@ -202,7 +215,7 @@ const ChartsCard = ({
                                 series={seriesMemo}
                                 categories={categoriesMemo}
                                 type={type}
-                                titleLabel={chartsTitle ? chartsTitle : ""/* titleMemo */}
+                                titleLabel={titleMemo /*chartsTitle ? chartsTitle : ""/* titleMemo */}
                                 titleLabelColor={titleLabelColor}
                                 subtitleLabel={chartsSubTitle}
                                 themeColor={themeColor}

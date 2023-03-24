@@ -73,8 +73,8 @@ const AccountPrivacyPage = Loadable(lazy(() => import('pages/account/privacy/Acc
 const StatsRouterPage = Loadable(lazy(() => import('pages/management/StatsRouterPage')));
 // const ManagementDashboardPage = Loadable(lazy(() => import('pages/management/dashboard/ManagementDashboardPage')));
 const StatsInvoicesPage = Loadable(lazy(() => import('pages/management/invoice/StatsInvoicesPage')));
-// const StatsClientsPage = Loadable(lazy(() => import('pages/management/clients/StatsClientsPage')));
-// const StatsEventsPage = Loadable(lazy(() => import('pages/management/events/StatsEventsPage')));
+const StatsClientsPage = Loadable(lazy(() => import('pages/management/clients/StatsClientsPage')));
+const StatsEventsPage = Loadable(lazy(() => import('pages/management/events/StatsEventsPage')));
 // // const StatsServicesPage = Loadable(lazy(() => import('pages/management/services/StatsServicesPage')));
 /**
  * SETTINGS
@@ -271,14 +271,14 @@ const MainRoutes = {
                     path: 'invoices', 
                     element: <StatsInvoicesPage />
                 },
-                // {
-                //     path: 'clients', 
-                //     element: <StatsClientsPage />
-                // },
-                // {
-                //     path: 'events',
-                //     element: <StatsEventsPage />
-                // },
+                {
+                    path: 'clients', 
+                    element: <StatsClientsPage />
+                },
+                {
+                    path: 'events',
+                    element: <StatsEventsPage />
+                },
                 // // {
                 // //     path: 'services', 
                 // //     element: <StatsServicesPage />

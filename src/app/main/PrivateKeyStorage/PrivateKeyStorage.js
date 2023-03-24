@@ -67,6 +67,7 @@ const PrivateKeyStorage = ({ children }) => {
                                     onChange={(event) => {
                                         onInputChange(event);
                                     }}
+                                    autoFocus
                                 />
                                 : <TextField
                                     id="wlcrm-lock-key-private"
@@ -76,6 +77,7 @@ const PrivateKeyStorage = ({ children }) => {
                                     onChange={(e) => {
                                         onCombinationPress(e)
                                     }}
+                                    autoFocus
                                 />}
                         </div>
                         <div>
