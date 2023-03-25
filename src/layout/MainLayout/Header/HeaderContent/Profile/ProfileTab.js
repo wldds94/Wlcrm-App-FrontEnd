@@ -12,7 +12,7 @@ import { List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import LogOutButton from 'components/button/LogOutButton';
 
 // assets
-import { EditOutlined, WalletOutlined } from '@ant-design/icons';
+import { EditOutlined } from '@ant-design/icons';
 import {AiOutlineAppstore} from 'react-icons/ai'
 
 // ==============================|| HEADER PROFILE - PROFILE TAB ||============================== //

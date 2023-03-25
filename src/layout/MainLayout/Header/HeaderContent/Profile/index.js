@@ -30,6 +30,8 @@ import SupportListItem from './components/SupportListItem';
 
 // assets
 import genericAvatar from 'assets/images/avatar/generic-avatar.svg';
+import genericAvatarM from 'assets/images/avatar/user-male.png';
+import genericAvatarF from 'assets/images/avatar/user-female.png';
 
 // icons
 import { SettingOutlined, UserOutlined } from '@ant-design/icons';
@@ -59,6 +61,20 @@ function a11yProps(index) {
     };
 }
 
+const avatars = [
+    {
+        value: "M",
+        image: genericAvatarM,
+    },
+    {
+        value: "F",
+        image: genericAvatarF,
+    },
+]
+function getAvatar (value) {
+    const finded = avatars?.find(item => String(item?.value) === String(value)) // console.log(finded); // console.log(value);
+    return finded?.image
+}
 // ==============================|| HEADER CONTENT - PROFILE ||============================== //
 
 const Profile = () => {
@@ -104,7 +120,7 @@ const Profile = () => {
                 onClick={handleToggle}
             >
                 <Stack direction="row" spacing={2} alignItems="center" sx={{ p: 0.5 }}>
-                    <Avatar alt="profile user" src={account?.avatar ? account.avatar : genericAvatar} sx={{ width: 32, height: 32 }} />
+                    <Avatar alt="profile user" src={getAvatar(account?.meta?.sex)/* account?.avatar ? account.avatar : genericAvatar */} sx={{ width: 32, height: 32 }} />
                     <Typography variant="subtitle1">{account?.display_name/* accountName *//* "John Doe" */}</Typography>
                 </Stack>
             </ButtonBase>
@@ -146,7 +162,7 @@ const Profile = () => {
                                             <Grid container justifyContent="space-between" alignItems="center">
                                                 <Grid item>
                                                     <Stack direction="row" spacing={1.25} alignItems="center">
-                                                        <Avatar alt="profile user" src={account?.avatar ? account.avatar : genericAvatar} sx={{ width: 32, height: 32 }} />
+                                                        <Avatar alt="profile user" src={getAvatar(account?.meta?.sex)/* account?.avatar ? account.avatar : genericAvatar */} sx={{ width: 32, height: 32 }} />
                                                         <Stack>
                                                             <Typography variant="h6">{account?.display_name/* accountName *//* John Doe */}</Typography>
                                                             <Typography variant="body2" color="textSecondary">
@@ -208,8 +224,8 @@ const Profile = () => {
                                                 </TabPanel>
                                                 <Divider />
                                                 <SupportListItem
-                                                    // selectedIndex={selectedIndex}
-                                                    // handleListItemClick={handleListItemClick}
+                                                // selectedIndex={selectedIndex}
+                                                // handleListItemClick={handleListItemClick}
                                                 />
                                             </>
                                         )}

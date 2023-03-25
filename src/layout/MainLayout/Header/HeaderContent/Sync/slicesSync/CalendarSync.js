@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 // react-redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,7 +11,9 @@ import SyncNotification from './components/SyncNotification';
 // icons
 import {TbCalendarEvent} from 'react-icons/tb'
 
-const CalendarSync = () => {
+const CalendarSync = ({
+    dispatchResync = false,
+}) => {
     const dispatch = useDispatch()
 
     // const syncStatus = useSelector(getSyncStatus)
@@ -23,6 +25,12 @@ const CalendarSync = () => {
         console.log('Sync Calendar');
         dispatch(syncCalendarData())
     }
+
+    useEffect(() => {
+        if (dispatchResync/*  !== haveToResync */) {
+            handleSync()
+        }
+    }, [dispatchResync])
 
     return (
         <>

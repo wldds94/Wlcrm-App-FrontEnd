@@ -2,22 +2,11 @@ import React from 'react'
 
 // material-ui
 import {
-    Avatar,
-    Badge,
-    Box,
-    ClickAwayListener,
     Divider,
-    IconButton,
-    List,
     ListItemButton,
     ListItemAvatar,
     ListItemText,
-    ListItemSecondaryAction,
-    Paper,
-    Popper,
-    SwipeableDrawer,
     Typography,
-    useMediaQuery
 } from '@mui/material';
 
 // project import
@@ -25,8 +14,10 @@ import {BackgroundLetterAvatars} from 'components/avatar/CustomAvatar';
 
 // assets
 import { IoMdClose } from 'react-icons/io'
-import { useSelector } from 'react-redux';
-import { getUserById } from 'store/reducers/users';
+// import { useSelector } from 'react-redux';
+// import { getUserById } from 'store/reducers/users';
+// import useCurrentAccount from 'hooks/redux/aggregate/useCurrentAccount';
+import useUserByID from 'hooks/redux/query/useUserByID';
 
 const ChatNotification = ({
     userId = 0,
@@ -43,14 +34,16 @@ const ChatNotification = ({
     dayjs.locale('it')
     const timeAgo = time !== null ? dayjs(time)/* .locale('it') */.fromNow() : 'Not Provided'
 
-    const user = useSelector(state => getUserById(state, userId))
-    // console.log(user);
+    // const user = useSelector(state => getUserById(state, userId))
+    // const {currentAccount: user} = useCurrentAccount()
+    const user = useUserByID(userId)
+    console.log(user);
 
     return (
         <>
             <ListItemButton>
                 <ListItemAvatar>
-                    <BackgroundLetterAvatars name={user !== undefined ? user?.meta?.first_name + " " + user?.meta?.last_name : ""} />
+                    <BackgroundLetterAvatars name={user !== undefined ? user?.display_name : ""} />
                 </ListItemAvatar>
 
                 <ListItemText
@@ -62,19 +55,6 @@ const ChatNotification = ({
                     secondary={withTime ? timeAgo : ''}
                 />
 
-                {/* {onAction !== false &&
-                    <ListItemSecondaryAction sx={{ alignSelf: 'center', }}>
-                        <IconButton onClick={() => onAction()} sx={{ borderRadius: '50%', }} >
-                            <Avatar
-                                sx={{
-                                    color: 'primary.main',
-                                    bgcolor: 'primary.lighter'
-                                }}
-                            >
-                                <ActionIcon />
-                            </Avatar>
-                        </IconButton>
-                    </ListItemSecondaryAction>} */}
             </ListItemButton>
 
             <Divider />

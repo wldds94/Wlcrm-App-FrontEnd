@@ -1,23 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 // material-ui
 import {
     Avatar,
-    Badge,
-    Box,
-    ClickAwayListener,
     Divider,
     IconButton,
-    List,
     ListItemButton,
     ListItemAvatar,
     ListItemText,
     ListItemSecondaryAction,
-    Paper,
-    Popper,
-    SwipeableDrawer,
     Typography,
-    useMediaQuery
 } from '@mui/material';
 
 // icons
@@ -35,6 +27,7 @@ const SyncNotification = ({
     withDivider = true,
     SyncIcon = MdSync,
     onSync = false,
+    // dispatchSync = false,
     ...other
 }) => {
     const dayjs = require('dayjs')
@@ -42,6 +35,12 @@ const SyncNotification = ({
     dayjs.extend(relativeTime)
     dayjs.locale('it')
     const timeAgo = time !== null ? dayjs(time)/* .locale('it') */.fromNow() : 'Not Provided'
+
+    // useEffect(() => {
+    //     if (dispatchSync) {
+    //         onSync()
+    //     }
+    // }, [dispatchSync])
 
     return (
         <>

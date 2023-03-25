@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 // react-redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,7 +11,9 @@ import SyncNotification from './components/SyncNotification';
 // icons
 import {TbBuildingStore} from 'react-icons/tb'
 
-const CompanySync = () => {
+const CompanySync = ({
+    dispatchResync = false,
+}) => {
     const dispatch = useDispatch()
 
     const syncUpdate = useSelector(getOptionsSyncUpdate) // console.log(syncUpdate);
@@ -22,6 +24,12 @@ const CompanySync = () => {
         // console.log('Sync Clients');
         dispatch(syncOptionsData())
     }
+
+    useEffect(() => {
+        if (dispatchResync/*  !== haveToResync */) {
+            handleSync()
+        }
+    }, [dispatchResync])
 
     return (
         <>

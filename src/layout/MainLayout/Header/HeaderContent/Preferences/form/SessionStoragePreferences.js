@@ -6,28 +6,28 @@ import {
     FormControl,
     FormControlLabel,
     FormLabel,
-    FormHelperText,
-    Grid,
     Radio,
     RadioGroup,
-    Typography
+    Stack,
 } from '@mui/material';
 import Divider from '@mui/material/Divider';
 
 // project import
 import SimpleHeaderDivider from 'components/typography/SimpleHeaderDivider'
 import BasicSelect from 'components/input/BasicSelect';
+import SaveButton from 'components/button/SaveButton';
 
 // third party
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { Stack } from '../../../../../../../node_modules/@mui/material/index';
-import SaveButton from 'components/button/SaveButton';
+
+// hooks
 import useCalendarSession from 'hooks/session/useCalendarSession';
 
 // redux
-import { useDispatch, useSelector } from 'react-redux';
-import { getCalendarConfig, savePreferences } from 'store/reducers/calendar';
+import { useDispatch } from 'react-redux';
+import { savePreferences } from 'store/reducers/calendar';
+
 
 const SessionStoragePreferences = () => {
     const dispatch = useDispatch()

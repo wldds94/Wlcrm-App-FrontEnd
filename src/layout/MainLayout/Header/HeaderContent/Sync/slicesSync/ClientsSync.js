@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 // react-redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,7 +12,9 @@ import SyncNotification from './components/SyncNotification';
 import {HiOutlineUserGroup} from 'react-icons/hi'
 
 
-const ClientsSync = () => {
+const ClientsSync = ({
+    dispatchResync = false,
+}) => {
     console.log('ClientsSync');
     const dispatch = useDispatch()
 
@@ -24,6 +26,12 @@ const ClientsSync = () => {
         // console.log('Sync Clients');
         dispatch(syncClientData(/* { value: 'Test' } */))//.unwrap()
     }
+
+    useEffect(() => {
+        if (dispatchResync/*  !== haveToResync */) {
+            handleSync()
+        }
+    }, [dispatchResync])
 
     return (
         <>

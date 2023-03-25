@@ -1,13 +1,14 @@
 import React from 'react'
 
 // material-ui
-import { Box, IconButton, Link, SwipeableDrawer, useMediaQuery } from '@mui/material';
-import { Stack, Typography } from '../../../../../../node_modules/@mui/material/index';
+import { Box, IconButton, Typography, SwipeableDrawer } from '@mui/material';
 
 // assets
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import SessionStoragePreferences from './form/SessionStoragePreferences';
-import SimpleHeaderDivider from 'components/typography/SimpleHeaderDivider';
+import { Stack } from '@mui/material';
+import { CloseIcon } from 'assets/font-icons/icons';
+import FullScreenStorageForm from './form/FullScreenStorageForm';
 
 
 const Preferences = () => {
@@ -33,12 +34,17 @@ const Preferences = () => {
             <SwipeableDrawer
                 anchor={"right"}
                 open={openDrawer}
-                onClose={toggleDrawer(false)}
-                onOpen={toggleDrawer(true)}
+                onClose={() => openDrawer && setOpenDrawer(false)}
+                onOpen={() => !openDrawer && setOpenDrawer(true)}
                 sx={{
                     zIndex: 1202,
                 }}
             >
+                <Stack alignItems="end">
+                    <IconButton onClick={() => setOpenDrawer(false)}>
+                        <CloseIcon />
+                    </IconButton>
+                </Stack>
                 <Box
                     sx={{ width: 300, p: 2 }}
                     role="presentation"
@@ -52,7 +58,10 @@ const Preferences = () => {
                     <Box
                         sx={{ p: 1 }}
                     ></Box>
-                    <SessionStoragePreferences />
+                    <Stack gap={6}>
+                        <SessionStoragePreferences />
+                        <FullScreenStorageForm />
+                    </Stack>
                 </Box>
             </SwipeableDrawer>
         </>

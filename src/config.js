@@ -16,8 +16,9 @@ const config = {
         invoice: 'z8Ygo4vTy4m52xk',
     }, // 'Wt6dkckSX.evl2h'
 
-    // scheduler
-
+    // fullscreen
+    // fullScreenValue: false,
+    // fullScreenkey: 'wlcrmUserFullScreenMode',
 };
 
 export default config;

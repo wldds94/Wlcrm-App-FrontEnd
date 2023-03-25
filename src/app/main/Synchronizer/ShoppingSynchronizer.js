@@ -6,13 +6,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getShoppingStatus, getShoppingSyncStatus, syncShopping } from 'store/reducers/shopping';
 
 // project import
-import AjaxLoading from 'components/loader/AjaxLoading';
-import SecondaryAjaxLoading from 'components/loader/SecondaryAjaxLoading';
-import Alerts from 'app/main/Alerts/Alerts';
+// import AjaxLoading from 'components/loader/AjaxLoading';
+// import SecondaryAjaxLoading from 'components/loader/SecondaryAjaxLoading';
+// import Alerts from 'app/main/Alerts/Alerts';
 
 const ShoppingSynchronizer = () => {
-    const POLL_TIME_CHAT = 1000 * 30
-    const POLL_TIME = 1000 * 60 //  30 // 90// 60
+    // const POLL_TIME_CHAT = 1000 * 30
+    // const POLL_TIME = 1000 * 60 
     const POLL_TIME_TEST = 1000 * 120 //  30 // 90// 60
     // redux
     const dispatch = useDispatch();

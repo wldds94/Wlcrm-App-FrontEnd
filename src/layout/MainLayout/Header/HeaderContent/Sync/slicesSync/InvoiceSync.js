@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 // react-redux
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,7 +11,9 @@ import SyncNotification from './components/SyncNotification';
 // icons
 import {GiMoneyStack} from 'react-icons/gi'
 
-const InvoiceSync = () => {
+const InvoiceSync = ({
+    dispatchResync = false,
+}) => {
     const dispatch = useDispatch()
 
     const syncUpdate = useSelector(getInvoicesSyncUpdate) // console.log(syncUpdate);
@@ -22,6 +24,12 @@ const InvoiceSync = () => {
         // console.log('Sync Clients');
         dispatch(syncInvoiceData())
     }
+
+    useEffect(() => {
+        if (dispatchResync/*  !== haveToResync */) {
+            handleSync()
+        }
+    }, [dispatchResync])
 
     return (
         <>

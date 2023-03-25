@@ -3,7 +3,6 @@ import { useRef, useState } from 'react';
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import {
-    Avatar,
     Badge,
     Box,
     ClickAwayListener,
@@ -11,12 +10,9 @@ import {
     IconButton,
     List,
     ListItemButton,
-    ListItemAvatar,
     ListItemText,
-    ListItemSecondaryAction,
     Paper,
     Popper,
-    SwipeableDrawer,
     Typography,
     useMediaQuery
 } from '@mui/material';
@@ -24,27 +20,18 @@ import {
 // project import
 import MainCard from 'components/card/MainCard';
 import Transitions from 'components/@extended/Transitions';
-// // import ShoppingSync from './slicesSync/ShoppingSync';
-// // import ClientsSync from './slicesSync/ClientsSync';
 import SyncNotification from '../Sync/slicesSync/components/SyncNotification';
 import ChatNotification from './components/ChatNotification';
-// import ChatSync from '../Sync/slicesSync/ChatSync';
 
 // react-redux
 import { useDispatch, useSelector } from 'react-redux';
 // slices
 import { getChatSyncData, syncChatData } from 'store/reducers/chat';
-// import { getShoppingSyncUpdate } from 'store/reducers/shopping';
-// import { getClientsSyncUpdate, getSyncUpdate } from 'store/reducers/client';
-// import { getChatSyncUpdate } from 'store/reducers/chat';
 
 // // assets
-import { BellOutlined, CloseOutlined, GiftOutlined, MessageOutlined, SettingOutlined } from '@ant-design/icons';
-// import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-// import CheckIcon from '@mui/icons-material/Check';
-// import InfoIcon from '@mui/icons-material/Info';
-import { AiOutlineMail } from 'react-icons/ai';
+import { CloseOutlined } from '@ant-design/icons';
 import {BiMessageDetail} from 'react-icons/bi';
+import useMessagesSync from 'hooks/redux/useMessagesSync';
 
 
 // sx styles
@@ -87,7 +74,7 @@ const Messages = () => {
     const iconBackColor = 'grey.100';
 
     // new messages
-    const notifies = useSelector(getChatSyncData)
+    const notifies = useMessagesSync() //  useSelector(getChatSyncData)
 
     const cleanMessage = () => {
         setOpen(false)

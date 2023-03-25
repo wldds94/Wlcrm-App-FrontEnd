@@ -1,9 +1,8 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import {
-    Avatar,
     Badge,
     Box,
     ClickAwayListener,
@@ -11,12 +10,10 @@ import {
     IconButton,
     List,
     ListItemButton,
-    ListItemAvatar,
     ListItemText,
-    ListItemSecondaryAction,
     Paper,
     Popper,
-    SwipeableDrawer,
+    // SwipeableDrawer,
     Typography,
     useMediaQuery
 } from '@mui/material';
@@ -24,35 +21,30 @@ import {
 // project import
 import MainCard from 'components/card/MainCard';
 import Transitions from 'components/@extended/Transitions';
-// project import
+// sync import
 import ShoppingSync from './slicesSync/ShoppingSync';
 import ClientsSync from './slicesSync/ClientsSync';
 import SyncNotification from './slicesSync/components/SyncNotification';
-// import ChatSync from './slicesSync/ChatSync';
+import InvoiceSync from './slicesSync/InvoiceSync';
+import CompanySync from './slicesSync/CompanySync';
+import UsersSync from './slicesSync/UsersSync';
+import ClinicalSync from './slicesSync/ClinicalSync';
+import CalendarSync from './slicesSync/CalendarSync';
 
 // react-redux
 import { useSelector } from 'react-redux';
 // slices
 import { getShoppingSyncUpdate } from 'store/reducers/shopping';
-import { getClientsSyncUpdate, getSyncUpdate } from 'store/reducers/client';
-import { getChatSyncUpdate } from 'store/reducers/chat';
+import { getClientsSyncUpdate } from 'store/reducers/client';
+import { getInvoicesSyncUpdate } from 'store/reducers/invoice';
+import { getOptionsSyncUpdate } from 'store/reducers/options';
+import { getClinicalSyncUpdate } from 'store/reducers/clinical';
+import { getUsersSyncUpdate } from 'store/reducers/users';
+import { getCalendarSyncUpdate } from 'store/reducers/calendar';
 
 // assets
-import { BellOutlined, CloseOutlined, GiftOutlined, MessageOutlined, SettingOutlined } from '@ant-design/icons';
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import CheckIcon from '@mui/icons-material/Check';
-import InfoIcon from '@mui/icons-material/Info';
-import {AiOutlineMail} from 'react-icons/ai';
-import InvoiceSync from './slicesSync/InvoiceSync';
-import { getInvoicesSyncUpdate } from 'store/reducers/invoice';
-import CompanySync from './slicesSync/CompanySync';
-import { getOptionsSyncUpdate } from 'store/reducers/options';
-import UsersSync from './slicesSync/UsersSync';
-import { getUsersSyncUpdate } from 'store/reducers/users';
-import { getClinicalSyncStatus, getClinicalSyncUpdate } from 'store/reducers/clinical';
-import ClinicalSync from './slicesSync/ClinicalSync';
-import CalendarSync from './slicesSync/CalendarSync';
-import { getCalendarSyncUpdate } from 'store/reducers/calendar';
+import { BellOutlined, CloseOutlined } from '@ant-design/icons';
+
 
 
 // sx styles
@@ -94,19 +86,19 @@ const Notification = () => {
     const iconBackColorOpen = 'grey.300';
     const iconBackColor = 'grey.100';
 
-    // DRAWER
-    const [openDrawer, setOpenDrawer] = useState(false);
-    const toggleDrawer = (open) => (event) => {
-        if (
-            event &&
-            event.type === 'keydown' &&
-            (event.key === 'Tab' || event.key === 'Shift')
-        ) {
-            return;
-        }
+    // // DRAWER
+    // const [openDrawer, setOpenDrawer] = useState(false);
+    // const toggleDrawer = (open) => (event) => {
+    //     if (
+    //         event &&
+    //         event.type === 'keydown' &&
+    //         (event.key === 'Tab' || event.key === 'Shift')
+    //     ) {
+    //         return;
+    //     }
 
-        setOpenDrawer(open);
-    };
+    //     setOpenDrawer(open);
+    // };
 
     /** NOTIFIES */
     const syncShoppingUpdate = useSelector(getShoppingSyncUpdate)
@@ -131,9 +123,25 @@ const Notification = () => {
         return Number(prev) + Number(next ? 1 : 0)
     }, [0]) /* 4 */
 
+    const [useAllResync, setUseAllResync] = useState(false)
+    const handleForceResync = () => {
+        console.log('Force Resync');
+        setUseAllResync(true)
+    }
+    useEffect(() => {
+        const timer = setTimeout(() => {
+
+            setUseAllResync(false)
+        }, 500);
+        return () => {
+            // console.log('Cleaning Timeout');
+            clearTimeout(timer);
+        };
+    }, [useAllResync])
+
     return (
         <>
-            
+
             <Box sx={{ flexShrink: 0, ml: 0.75 }}>
                 <IconButton
                     disableRipple
@@ -203,7 +211,7 @@ const Notification = () => {
                                                 }
                                             }}
                                         >
-                                            <ShoppingSync />
+                                            <ShoppingSync dispatchResync={useAllResync} />
                                             <ClientsSync />
                                             <InvoiceSync />
                                             <CompanySync />
@@ -222,31 +230,21 @@ const Notification = () => {
                                                         />
                                                     </Box>
                                                     <Divider />
-                                                    {/* <ListItemButton>
-                                                        <ListItemText
-                                                            primary={
-                                                                <Typography variant="subtitle1">
-                                                                    Nessuna notifica da mostrare
-                                                                </Typography>
-                                                            }
-                                                        />
-                                                    </ListItemButton>
-                                                    <Divider /> */}
-
                                                 </>
 
                                             }
 
 
-                                            <ListItemButton onClick={toggleDrawer(true)/*() => {;  setOpen(false);  }*/} sx={{ textAlign: 'center', py: `${12}px !important` }}>
-                                                <ListItemText
-                                                    primary={
-                                                        <Typography variant="h6" color="primary">
-                                                            View All
-                                                        </Typography>
-                                                    }
-                                                />
-                                            </ListItemButton>
+                                            {notifies > 0 &&
+                                                <ListItemButton onClick={() => handleForceResync()} sx={{ textAlign: 'center', py: `${12}px !important` }}>
+                                                    <ListItemText
+                                                        primary={
+                                                            <Typography variant="h6" color="primary">
+                                                                Sincronizza tutto
+                                                            </Typography>
+                                                        }
+                                                    />
+                                                </ListItemButton>}
                                         </List>
                                     </MainCard>
                                 </ClickAwayListener>
@@ -255,7 +253,7 @@ const Notification = () => {
                     )}
                 </Popper>
             </Box>
-            <SwipeableDrawer
+            {/* <SwipeableDrawer
                 anchor={"right"}
                 open={openDrawer}
                 onClose={toggleDrawer(false)}
@@ -273,7 +271,7 @@ const Notification = () => {
 
                 </Box>
 
-            </SwipeableDrawer>
+            </SwipeableDrawer> */}
         </>
 
     );
