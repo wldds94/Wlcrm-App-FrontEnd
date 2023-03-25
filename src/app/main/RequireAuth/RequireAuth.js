@@ -8,14 +8,14 @@ import { useDispatch, useSelector } from 'react-redux'
 
 // slices
 import { getAuthvalidateStatus, selectAuthStatus, selectCurrentToken, tokenValidation } from "store/reducers/auth";
-// import { cleanClient } from 'store/reducers/client';
-// import { cleanInvoice } from 'store/reducers/invoice';
-// import { cleanOptions } from 'store/reducers/options';
-// import { cleanEvents } from 'store/reducers/calendar';
-// import { cleanUser } from 'store/reducers/users';
-// import { cleanClinical } from 'store/reducers/clinical';
-// import { cleanChat } from 'store/reducers/chat';
-// import { cleanShopping } from 'store/reducers/shopping';
+import { cleanClient } from 'store/reducers/client';
+import { cleanInvoice } from 'store/reducers/invoice';
+import { cleanOptions } from 'store/reducers/options';
+import { cleanEvents } from 'store/reducers/calendar';
+import { cleanUser } from 'store/reducers/users';
+import { cleanClinical } from 'store/reducers/clinical';
+import { cleanChat } from 'store/reducers/chat';
+import { cleanShopping } from 'store/reducers/shopping';
 // import useAuth from 'hooks/redux/useAuth';
 import { cleanEncrypt, getHiddenKey } from 'store/reducers/encrypt';
 
@@ -45,23 +45,23 @@ const RequireAuth = ({ /* token = null,  */children }) => {
 
     useEffect(() => {
         // console.log(token);
-        if (/* isValidToken === 'failed' || */ token === null) {
+        if (token === null) {
             
-            // dispatch(cleanClient())
+            dispatch(cleanClient())
 
-            // dispatch(cleanOptions())
+            dispatch(cleanOptions())
 
-            // dispatch(cleanEvents())
+            dispatch(cleanEvents())
 
-            // dispatch(cleanUser())
+            dispatch(cleanUser())
 
-            // dispatch(cleanInvoice())
+            dispatch(cleanInvoice())
 
-            // dispatch(cleanClinical())
+            dispatch(cleanClinical())
 
-            // dispatch(cleanChat())
+            dispatch(cleanChat())
 
-            // dispatch(cleanShopping())
+            dispatch(cleanShopping())
 
             // HIDDEN KEY
             dispatch(cleanEncrypt())

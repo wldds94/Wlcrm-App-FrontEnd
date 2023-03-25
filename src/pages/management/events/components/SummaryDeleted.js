@@ -1,7 +1,9 @@
 import React from 'react'
 
 import ChartsCard from 'components/apex-charts/card/ChartsCard'
-import { getCountByColumn, getPercentCount } from 'utils/stats'
+
+// utils
+import { getPercentCount, getUniqueByColumn } from 'utils/app/stats/stats-density'
 
 const SummaryDeleted = ({
     data = [],
@@ -20,9 +22,13 @@ const SummaryDeleted = ({
             // chartsSubTitle="Panoramica Stato"
             data={data}
             memoryDataCallback={getPercentCount}
-            parallelSeries={0}
+            memoryCategoriesCallback={getUniqueByColumn}
+            getUnique={getUniqueByColumn}
+            columnParallal="status"
+            fieldDate="status"// fieldDate="date"
+            // parallelSeries={0}
             defaultType={defaultType}
-            defaultTypeCategory="status"
+            defaultTypeSeries="status"
             toggler={false}
             themeColor={"status"}
         />

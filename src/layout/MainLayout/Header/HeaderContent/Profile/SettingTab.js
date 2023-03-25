@@ -9,6 +9,9 @@ import { List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 
 // assets
 import { CommentOutlined, LockOutlined, QuestionCircleOutlined, UserOutlined, UnorderedListOutlined } from '@ant-design/icons';
+import AccountTreeIcon from '@mui/icons-material/AccountTree';
+import {MdOutlineAccountTree} from 'react-icons/md'
+
 import SupportListItem from './components/SupportListItem';
 
 // ==============================|| HEADER PROFILE - SETTING TAB ||============================== //
@@ -44,17 +47,17 @@ const SettingTab = () => {
                 selectedIndex={selectedIndex}
                 handleListItemClick={handleListItemClick}
             />
-            {/* <ListItemButton selected={selectedIndex === 1}
+            <ListItemButton selected={selectedIndex === 1}
                 onClick={(event) => {
                     handleListItemClick(event, 1)
                     handleNavigate('/account/activities')
                 }}
             >
                 <ListItemIcon>
-                    <UserOutlined />
+                    <MdOutlineAccountTree />
                 </ListItemIcon>
                 <ListItemText primary="Account Activities" />
-            </ListItemButton> */}
+            </ListItemButton>
             <ListItemButton selected={selectedIndex === 2}
                 onClick={(event) => {
                     handleListItemClick(event, 2)

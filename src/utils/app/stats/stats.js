@@ -46,6 +46,8 @@ export const getCategoriesByPeriod = (data, period = 'months') => {
 
 export const getPositionByPeriod = (period = 'months', date) =>  {
     let position = -1
+    console.log(period);
+    console.log(date);
     switch (period) {
         case 'months':
             position = dayjs(date).month()

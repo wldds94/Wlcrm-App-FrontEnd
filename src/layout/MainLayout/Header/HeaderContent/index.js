@@ -2,8 +2,11 @@
 import { useMediaQuery } from '@mui/material';
 import { Stack } from '@mui/material/index';
 
-
-// assets
+// project import
+import Profile from './Profile';
+// import Notification from './Sync/Notification';
+// import Preferences from './Preferences/Preferences';
+// import Messages from './Messages/Messages';
 
 // ==============================|| HEADER - CONTENT ||============================== //
 
@@ -13,7 +16,7 @@ const HeaderContent = () => {
     return (
         <>
             <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ width: '100%'}} >
-
+                <Profile />
             </Stack>
             
         </>

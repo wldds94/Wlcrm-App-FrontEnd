@@ -46,7 +46,7 @@ const AccountRouterPage = () => {
             base: '/account/',
             key: 2,
             icon: <AccountTreeIcon />,
-            label: "Account Activity",
+            label: "Account Activities",
             hasSubtitle: true,
             titleLabel: "Attività Account",
             titleDescription: "Controlla le tue attività attraverso le sessioni e/o disconnetti",

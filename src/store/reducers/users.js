@@ -2,11 +2,14 @@
 import { createSelector, createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 // project import
-import { axiosPrivate } from 'api/axios';
+import axios, { axiosPrivate, BASE_HEADER_PARAM } from 'api/axios';
 
 // utils
 // import { getRandomColor } from 'utils/color';
 import { isDeepEqual } from 'utils/equal';
+
+// CONST 
+// import BASE_HEADER_PARAM from 'api/axios'
 
 const initialSync = {
     data: null,
@@ -111,6 +114,28 @@ const users = createSlice({
                 state.status = 'failed'
                 state.error = action.error.message
             })
+            // Revoke user token
+            .addCase(revokeUsersToken.pending, (state, action) => {
+                state.status = 'loading'
+            })
+            .addCase(revokeUsersToken.fulfilled, (state, action) => {
+                const { status = false } = action.payload
+                state.status = status ? 'succeeded' : 'failed'
+                if (status) {
+                    const data = action.payload?.data
+                    console.log(data);
+                    if (!isDeepEqual(data, state.data)) {
+                        state.data = data
+                        state.sync = { ...initialSync }
+                    }
+                }
+            })
+            .addCase(revokeUsersToken.rejected, (state, action) => {
+                console.log(action);
+
+                state.status = 'failed'
+                state.error = action.error.message
+            })
     }
 })
 
@@ -185,6 +210,24 @@ export const saveUsersInfo = createAsyncThunk('users/info/save', async (data) =>
     try {
         // const axiosPrivate = useAxiosPrivate()
         const response = await axiosPrivate.post('/users/info/save', data)
+        return response.data
+    } catch (error) {
+        return error?.response?.data // return error.message
+    }
+})
+
+// Revoke Token
+export const revokeUsersToken = createAsyncThunk('users/revoke/token', async (data) => {
+    let headers = {}
+    headers[BASE_HEADER_PARAM] = data?.value
+    try {
+        let config = {
+            headers
+            // headers: {
+            //     ...headers
+            // }
+        }
+        const response = await axios.post('/auth/revoke', {}, config)
         return response.data
     } catch (error) {
         return error?.response?.data // return error.message

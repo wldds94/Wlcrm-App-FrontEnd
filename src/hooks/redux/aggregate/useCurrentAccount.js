@@ -13,7 +13,14 @@ const useCurrentAccount = () => {
     const currentUser = useSelector(selectCurrentUser) // 
     // console.log(currentUser);
     const account = useMemo(() => {
-        return users?.find(item => Number(item?.ID) === Number(currentUser?.ID))
+        let finded = users?.find(item => Number(item?.ID) === Number(currentUser?.ID))
+        let auxActivity = []
+        finded?.activities?.map((item) => {
+            // console.log(item); // return JSON.parse(item)
+            auxActivity.push(JSON.parse(item))
+        })
+        finded.activities = auxActivity
+        return finded
     }, [users])
     
     return {

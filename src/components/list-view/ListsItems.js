@@ -52,7 +52,7 @@ const ListsItems = ({
     const matchDownMD = useMediaQuery(theme.breakpoints.down('md'));
     const matchDownSM = useMediaQuery(theme.breakpoints.down('sm'));
 
-    console.log(items);
+    // console.log(items);
     const [currentItems, setCurrentItems] = useState(items)
     useEffect(() => {
         // console.log('useEffect ListItems');

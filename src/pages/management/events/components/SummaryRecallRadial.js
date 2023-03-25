@@ -1,7 +1,9 @@
 import React from 'react'
 
 import ChartsCard from 'components/apex-charts/card/ChartsCard'
-import { getCountByColumn, getPercentCount } from 'utils/stats'
+
+// utils
+import { getPercentCount, getUniqueByColumn } from 'utils/app/stats/stats-density'
 
 const SummaryRecallRadial = ({
     data = [],
@@ -13,16 +15,16 @@ const SummaryRecallRadial = ({
         <ChartsCard
             classesContainer={['wlcrm-chart-small']}
             withHeader={false}
-            // cardTitle="Panoramica Appuntamenti"
             withWrapToolbar={false}
             chartsTitle="Panoramica Richiami"
-            // chartsTitlePreparation={() => "Panoramica Appuntamenti"}
-            // chartsSubTitle="Panoramica Stato"
             data={data}
             memoryDataCallback={getPercentCount}
-            parallelSeries={0}
+            memoryCategoriesCallback={getUniqueByColumn}
+            getUnique={getUniqueByColumn}
+            columnParallal="recallStatus"
+            fieldDate="recallStatus"
             defaultType={defaultType}
-            defaultTypeCategory="recallStatus"
+            defaultTypeSeries="recallStatus"
             toggler={false}
             themeColor={"status"}
         />

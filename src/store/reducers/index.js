@@ -14,9 +14,8 @@ import users from './users';
 import chat from './chat';
 import shopping from './shopping';
 import encrypt from './encrypt';
-
-// // mailer
-// import mailer from './mailer';
+// mailer
+import mailer from './mailer';
 
 // ==============================|| COMBINE REDUCERS ||============================== //
 
@@ -34,7 +33,7 @@ const reducers = combineReducers({
     clinical,
     chat,
     shopping,
-    // mailer,
+    mailer,
 });
 
 export default reducers;

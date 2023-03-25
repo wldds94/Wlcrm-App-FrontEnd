@@ -268,7 +268,7 @@ const MainRoutes = {
                 //     element: <ManagementDashboardPage />
                 // },
                 {
-                    path: 'invoices', 
+                    path: '', // 'invoices', 
                     element: <StatsInvoicesPage />
                 },
                 {

@@ -22,6 +22,7 @@ import {BsFillTelephoneOutboundFill} from 'react-icons/bs'
 
 // utils
 import { dispatchNotice } from 'utils/app/notice'
+import { isDeepEqual } from 'utils/equal'
 
 const ClientsListCard = ({
     item = null,
@@ -35,7 +36,7 @@ const ClientsListCard = ({
 
     const [currentItem, setCurrentItem] = useState(item)
     useEffect(() => {
-        if (JSON.stringify(item) !== JSON.stringify(currentItem)) {
+        if (!isDeepEqual(item, currentItem)) {
             setCurrentItem(item)
         }
     }, [item])

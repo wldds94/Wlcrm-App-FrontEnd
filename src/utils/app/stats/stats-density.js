@@ -1,9 +1,10 @@
 export const getCountByColumn =  (
-    data = [], 
-    period = false, 
-    columnParallal = false, 
+    data = [],
+    typeSeries = false,
+    columnParallal = false,
     fieldValue = false,
-    fieldDate = false, 
+    fieldParallal = false, // fieldDate
+    fieldParallalValue = false,
     categories = [], 
     getUnique = (data, columnParallal) => {return []},
     transformValueToCompare = (value) => {return value},
@@ -14,7 +15,7 @@ export const getCountByColumn =  (
 
     let series = new Array(unique.length).fill(0)
     data?.map((item, index) => {
-        const position = fieldDate !== false ? unique.indexOf(item[fieldDate]) : 0
+        const position = fieldParallal !== false ? unique.indexOf(item[fieldParallal]) : 0
         series[position] += 1
     })
 
@@ -23,11 +24,12 @@ export const getCountByColumn =  (
 }
 
 export const getDensityByColumn =  (
-    data = [], 
-    period = false, 
-    columnParallal = false, 
+    data = [],
+    typeSeries = false,
+    columnParallal = false,
     fieldValue = false,
-    fieldDate = false, 
+    fieldParallal = false, // fieldDate
+    fieldParallalValue = false,
     categories = [], 
     getUnique = (data, columnParallal) => {return []},
     transformValueToCompare = (value) => {return value},
@@ -42,7 +44,7 @@ export const getDensityByColumn =  (
         let y = []
         data?.map((row, index) => {
             if (row[columnParallal] === item) {
-                y.push(transformValueToPush(row[fieldDate]))
+                y.push(transformValueToPush(row[fieldParallal]))
             }
         })
         series.push({
@@ -56,11 +58,12 @@ export const getDensityByColumn =  (
 }
 
 export const getCountByColumnWithData = (
-    data = [], 
-    period = false, 
-    columnParallal = false, 
+    data = [],
+    typeSeries = false,
+    columnParallal = false,
     fieldValue = false,
-    fieldDate = false, 
+    fieldParallal = false, // fieldDate
+    fieldParallalValue = false,
     categories = [], 
     getUnique = (data, columnParallal) => {return []},
     transformValueToCompare = (value) => {return value},
@@ -69,10 +72,11 @@ export const getCountByColumnWithData = (
 ) => {
     const series = getCountByColumn(
         data, 
-        period, 
+        typeSeries, 
         columnParallal, 
         fieldValue,
-        fieldDate, 
+        fieldParallal, 
+        fieldParallalValue,
         categories, 
         getUnique,
         transformValueToCompare,
@@ -83,7 +87,38 @@ export const getCountByColumnWithData = (
     return [{ data: series }]
 }
 
+export const getPercentCount = (
+    data = [],
+    typeSeries = false,
+    columnParallal = false,
+    fieldValue = false,
+    fieldParallal = false, // fieldDate
+    fieldParallalValue = false,
+    categories = [], 
+    getUnique = (data, columnParallal) => {return []},
+    transformValueToCompare = (value) => {return value},
+    getPositionByPeriod = () => {return -1},
+    transformValueToPush = (value) => {return value},
+) => {
+    const rows = getCountByColumn(
+        data, 
+        typeSeries, 
+        columnParallal, 
+        fieldValue,
+        fieldParallal, 
+        fieldParallalValue,
+        categories, 
+        getUnique,
+        transformValueToCompare,
+        getPositionByPeriod,
+        transformValueToPush,
+    ) 
+
+    const series = rows?.map(item => {return /* Math.floor*/( (item / data.length) * 100).toFixed(2)})
+    return series
+}
+
 export const getUniqueByColumn = (data, column) => {
-    console.log(data);
+    console.log(data)
     return [...new Set(data.map(item => column !== false ? item[column] : item))]
 }

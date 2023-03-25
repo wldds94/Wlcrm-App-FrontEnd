@@ -22,25 +22,26 @@ import { ImStatsDots } from 'react-icons/im';
 
 const StatsRouterPage = () => {
     const routers = [
-        {
-            // value: "",
-            value: "",
-            key: 0,
-            icon: <AiOutlineAppstore />,
-            label: "Scrivania", // "Anagrafica Paziente",
-            base: "/management",
-            hasSubtitle: true,
-            useBaseRoute: true,
-            titleLabel: "Gestione",
-            titleDescription: "Admin Dashboard",
+        // {
+        //     // value: "",
+        //     value: "",
+        //     key: 0,
+        //     icon: <AiOutlineAppstore />,
+        //     label: "Scrivania", // "Anagrafica Paziente",
+        //     base: "/management",
+        //     hasSubtitle: true,
+        //     useBaseRoute: true,
+        //     titleLabel: "Gestione",
+        //     titleDescription: "Admin Dashboard",
 
-        },
+        // },
         {
-            value: "invoices",
-            base: '/management/',
-            key: 1,
+            value: "",
+            base: '/management',
+            key: 0,
             icon: <FaFileInvoiceDollar />,
             label: "Fatturazione",
+            useBaseRoute: true,
             hasSubtitle: true,
             titleLabel: "Analisi Incasso",
             titleDescription: "Grafici e Trend relativi alla Fatturazione",
@@ -48,7 +49,7 @@ const StatsRouterPage = () => {
         {
             value: "clients",
             base: '/management/',
-            key: 2,
+            key: 1,
             icon: <IoIosPeople />,
             label: "Pazienti",
             hasSubtitle: true,
@@ -58,7 +59,7 @@ const StatsRouterPage = () => {
         {
             value: "events",
             base: '/management/',
-            key: 3,
+            key: 2,
             icon: <AiTwotoneCalendar />,
             label: "Appuntamenti",
             hasSubtitle: true,

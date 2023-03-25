@@ -18,6 +18,7 @@ import {
     Tabs,
     Typography
 } from '@mui/material';
+import { Divider } from '@mui/material';
 
 // project import
 import MainCard from 'components/card/MainCard';
@@ -25,18 +26,16 @@ import Transitions from 'components/@extended/Transitions';
 import ProfileTab from './ProfileTab';
 import SettingTab from './SettingTab';
 import LogOutButton from 'components/button/LogOutButton';
-
-// redux
-import { useDispatch, useSelector } from 'react-redux';
-// types store - Redux
-import { logOut, selectCurrentUser } from 'store/reducers/auth';
-import { getUserById } from 'store/reducers/users';
+import SupportListItem from './components/SupportListItem';
 
 // assets
-// import avatar1 from 'assets/images/users/avatar-1.png';
-// import genericAvatar from 'assets/images/users/avatar-fail.png';
 import genericAvatar from 'assets/images/avatar/generic-avatar.svg';
-import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
+
+// icons
+import { SettingOutlined, UserOutlined } from '@ant-design/icons';
+
+// hooks
+import useCurrentAccount from 'hooks/redux/aggregate/useCurrentAccount';
 
 // tab panel wrapper
 function TabPanel({ children, value, index, ...other }) {
@@ -66,22 +65,13 @@ const Profile = () => {
     const theme = useTheme();
 
     // Redux
-    const dispatch = useDispatch();
-
-    const currentUser = useSelector(selectCurrentUser)
-    const account = useSelector(state => getUserById(state, currentUser?.ID))
-    // const account = useSelector(getAccount)
+    const { currentAccount: account } = useCurrentAccount()
 
     const anchorRef = useRef(null);
     const [open, setOpen] = useState(false);
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
-
-    // const handleLogout = async () => {
-    //     // logout
-    //     dispatch(logOut());
-    // };
 
     const handleClose = (event) => {
         if (anchorRef.current && anchorRef.current.contains(event.target)) {
@@ -216,6 +206,11 @@ const Profile = () => {
                                                 <TabPanel value={value} index={1} dir={theme.direction}>
                                                     <SettingTab />
                                                 </TabPanel>
+                                                <Divider />
+                                                <SupportListItem
+                                                    // selectedIndex={selectedIndex}
+                                                    // handleListItemClick={handleListItemClick}
+                                                />
                                             </>
                                         )}
                                     </MainCard>

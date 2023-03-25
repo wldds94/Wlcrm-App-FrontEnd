@@ -1,5 +1,8 @@
 //import dayjs from 'dayjs' // ES 2015
 const dayjs = require('dayjs')
+require('dayjs/locale/it')
+dayjs.locale('it') // use locale globally
+// import 'dayjs/locale/de' // ES 2015 
 var localeData = require('dayjs/plugin/localeData')
 dayjs.extend(localeData)
 var dayOfYear = require('dayjs/plugin/dayOfYear')
@@ -30,8 +33,10 @@ export const getDayJS = () => {
 /**
  * TODAY DATE FORMAT
  */
-export const getDateFormat = (date = false, daysDeelay = 0, formatDate = 'DD MMM YYYY') => {
-    const dateDayjs = date !== false ? dayjs(date) : dayjs()
+export const getDateFormat = (date = false, daysDeelay = 0, formatDate = 'DD MMM YYYY', byUnix = false) => {
+    const dateDayjs = date !== false 
+        ? ( byUnix !== false ? dayjs.unix(date) : dayjs(date) )
+        : dayjs()
     const search = Number(daysDeelay) !== 0 ? dateDayjs.add(daysDeelay, 'day') : dateDayjs
 
     return search.format(formatDate)

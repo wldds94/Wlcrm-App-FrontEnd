@@ -5,13 +5,17 @@ import { Box, Grid, Stack } from '@mui/material'
 
 // project import
 import AccordionCard from 'components/card/list/AccordionCard'
+import SummaryDeleted from './components/SummaryDeleted'
+import SummaryRecallRadial from './components/SummaryRecallRadial'
+import ChartsCard from 'components/apex-charts/card/ChartsCard'
 
 // hooks
 import useSchedulerData from 'hooks/redux/aggregate/useSchedulerData'
-// import SummaryDeleted from './components/SummaryDeleted'
-// import { getSummaryInvoices } from 'utils/app/invoice'
-// import ChartsCard from 'components/apex-charts/card/ChartsCard'
-// import SummaryRecallRadial from './components/SummaryRecallRadial'
+
+// utils
+import { getCurrentYearsCategories, getDateInYear, getSummary, getYearsCategories } from 'utils/app/stats/stats-summary'
+import { getCategoriesByPeriod, getPositionByPeriod } from 'utils/app/stats/stats'
+import { getUniqueByColumn } from 'utils/app/stats/stats-density'
 
 const StatsEventsPage = () => {
     const { data } = useSchedulerData()
@@ -26,7 +30,9 @@ const StatsEventsPage = () => {
                                 bottomBorder={false}
                                 fullWidth={true}
                                 ContentDetails={() => <>
-                                    
+                                    <SummaryDeleted
+                                        data={data}
+                                    />
                                 </>}
                             />
                         </Grid>
@@ -35,7 +41,9 @@ const StatsEventsPage = () => {
                                 bottomBorder={false}
                                 fullWidth={true}
                                 ContentDetails={() => <>
-                                    
+                                    <SummaryRecallRadial
+                                        data={data}
+                                    />
                                 </>}
                             />
                         </Grid>
@@ -43,45 +51,58 @@ const StatsEventsPage = () => {
 
                 </Grid>
                 <Grid item xs={12} md={7} >
-                    {/* <ChartsCard
+                    <ChartsCard
                         cardTitle="Ultimo Mese / Settimana"
                         data={data}
-                        memoryDataCallback={getSummaryInvoices}
-                        memoryDataDependecies={[false, 'startDate']}
-                        // memoryCategoriesCallback={getCatByPeriod}
-                        defaultTypeCategory="lastWeek"
-                        defaultTypesCategories={[{
+                        memoryDataCallback={getSummary}
+                        memoryCategoriesCallback={(data, types) => getCategoriesByPeriod(data, types)}
+                        columnParallal="year"
+                        fieldDate="startDate"
+                        transformValueToCompare={(value) => getDateInYear(value)}
+                        getPositionByPeriod={(period, value) => getPositionByPeriod(period, value)}
+                        getUnique={getYearsCategories}
+                        defaultTypeSeries="lastWeek"
+                        defaultTypesSeries={[{
                             value: 'lastWeek',
                             label: 'Week',
                         }, {
                             value: 'lastMonth',
                             label: 'Mese',
                         }]}
-                    /> */}
+                    />
                 </Grid>
                 <Grid item xs={12} >
                     <Box>
-                        {/* <ChartsCard
+                        <ChartsCard
                             cardTitle="Confronto Annuale per Ora"
                             data={data}
-                            memoryDataCallback={getSummaryInvoices}
-                            memoryDataDependecies={[false, 'startDate', 'status']}
-                            // memoryCategoriesCallback={getCatByPeriod}
-                            defaultTypeCategory="hour"
+                            memoryDataCallback={getSummary}
+                            memoryCategoriesCallback={(data, types) => getCategoriesByPeriod(data, types)}
+                            getPositionByPeriod={(period, value) => getPositionByPeriod(period, value)}
+                            getUnique={getUniqueByColumn}
+                            fieldDate="status"
+                            // fieldValue="startDate"
+                            fieldParallalValue="startDate"
+                            columnParallal="status"
+                            defaultTypeSeries="hour"
                             toggler={false}
                             themeColor={"status"}
-                        /> */}
+                        />
                     </Box>
                 </Grid>
                 <Grid item xs={12} >
-                    {/* <ChartsCard
+                    <ChartsCard
                         cardTitle="Confronto Annuo sul Triennio"
                         data={data}
-                        memoryDataCallback={getSummaryInvoices}
-                        memoryDataDependecies={[false, 'startDate']}
-                        // memoryCategoriesCallback={getCatByPeriod}
-                        defaultTypeCategory="months"
-                    /> */}
+                        memoryDataCallback={getSummary}
+                        memoryCategoriesCallback={(data, types) => getCategoriesByPeriod(data, types)}
+                        fieldDate="startDate"
+                        // fieldValue="subtotal"
+                        transformValueToCompare={(value) => getDateInYear(value)}
+                        getPositionByPeriod={(period, value) => getPositionByPeriod(period, value)}
+                        getUnique={getYearsCategories}
+                        defaultTypeSeries="months"
+                    />
                 </Grid>
             </Grid>
         </>
