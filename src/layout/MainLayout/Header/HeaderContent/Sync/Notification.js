@@ -212,12 +212,12 @@ const Notification = () => {
                                             }}
                                         >
                                             <ShoppingSync dispatchResync={useAllResync} />
-                                            <ClientsSync />
-                                            <InvoiceSync />
-                                            <CompanySync />
-                                            <UsersSync />
-                                            <ClinicalSync />
-                                            <CalendarSync />
+                                            <ClientsSync dispatchResync={useAllResync} />
+                                            <InvoiceSync dispatchResync={useAllResync} />
+                                            <CompanySync dispatchResync={useAllResync} />
+                                            <UsersSync dispatchResync={useAllResync} />
+                                            <ClinicalSync dispatchResync={useAllResync} />
+                                            <CalendarSync dispatchResync={useAllResync} />
                                             {/* <ChatSync /> */}
 
                                             {notifies < 1 &&

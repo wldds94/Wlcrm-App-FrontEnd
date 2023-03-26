@@ -27,8 +27,10 @@ const options = createSlice({
     reducers: {
         cleanOptions: () => initialState,
         syncOptionsData(state, action) {
-            state.options = state.sync.data
-            state.sync = {...initialSync}
+            if (state.sync.data) {
+                state.options = state.sync.data
+                state.sync = {...initialSync}
+            }
         }
     },
     extraReducers(builder) {

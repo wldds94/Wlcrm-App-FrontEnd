@@ -27,8 +27,10 @@ const clinical = createSlice({
     reducers: {
         cleanClinical: () => initialState,
         syncClinicalData(state, action) {
-            state.data = [...state.sync.data]
-            state.sync = {...initialSync}
+            if (state.sync.data) {
+                state.data = [...state.sync.data]
+                state.sync = {...initialSync}
+            }
         }
     },
     extraReducers(builder) {

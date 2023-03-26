@@ -34,8 +34,11 @@ const client = createSlice({
     reducers: {
         cleanClient: () => initialState,
         syncClientData(state, action) {
-            state.data = [...state.sync.data]
-            state.sync = { ...initialSync }
+            if (state.sync.data) {
+                state.data = [...state.sync.data]
+                state.sync = { ...initialSync }
+            }
+
             // state.sync = {
             //     data: null,
             //     status: 'idle', //'idle' | 'loading' | 'succeeded' | 'failed'

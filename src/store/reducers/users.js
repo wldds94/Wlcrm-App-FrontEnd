@@ -33,8 +33,10 @@ const users = createSlice({
     reducers: {
         cleanUser: () => initialState,
         syncUsersData(state, action) {
-            state.data = [...state.sync.data]
-            state.sync = { ...initialSync }
+            if (state.sync.data) {
+                state.data = [...state.sync.data]
+                state.sync = {...initialSync}
+            }
         }
     },
     extraReducers(builder) {

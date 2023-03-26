@@ -6,8 +6,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getClientsStatus, getClientsSyncStatus, syncClients } from 'store/reducers/client';
 
 const ClientsSynchronizer = () => {
-    const POLL_TIME_CHAT = 1000 * 30
-    const POLL_TIME = 1000 * 60 //  30 // 90// 60
+    // const POLL_TIME_CHAT = 1000 * 30
+    // const POLL_TIME = 1000 * 60 //  30 // 90// 60
     const POLL_TIME_TEST = 1000 * 120 //  30 // 90// 60
     // redux
     const dispatch = useDispatch();
